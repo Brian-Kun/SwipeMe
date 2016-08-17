@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwipeMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		27A484AC1D650E4100B3C705 /* SwipeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A484AF1D650E4100B3C705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27A484B11D650E4100B3C705 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 				27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */,
 				27A484BB1D650E4100B3C705 /* Info.plist */,
 				27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */,
+				1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */,
 			);
 			path = SwipeMe;
 			sourceTree = "<group>";
