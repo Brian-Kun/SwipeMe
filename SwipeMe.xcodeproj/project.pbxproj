@@ -14,6 +14,8 @@
 		27A484BA1D650E4100B3C705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */; };
 		27A484C51D650E4100B3C705 /* SwipeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484C41D650E4100B3C705 /* SwipeMeTests.swift */; };
 		27A484D01D650E4100B3C705 /* SwipeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484CF1D650E4100B3C705 /* SwipeMeUITests.swift */; };
+		27A484DE1D65103E00B3C705 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */; };
+		B3B4941355C16F2FDFBAE281 /* Pods_SwipeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 		27A484CB1D650E4100B3C705 /* SwipeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwipeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A484CF1D650E4100B3C705 /* SwipeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMeUITests.swift; sourceTree = "<group>"; };
 		27A484D11D650E4100B3C705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		628D83B79A30F5CD45158FCA /* Pods-SwipeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		782FA490898E8BE1B1EC39D4 /* Pods-SwipeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B4941355C16F2FDFBAE281 /* Pods_SwipeMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,8 @@
 				27A484C31D650E4100B3C705 /* SwipeMeTests */,
 				27A484CE1D650E4100B3C705 /* SwipeMeUITests */,
 				27A484AD1D650E4100B3C705 /* Products */,
+				93AB0EB265D9A57C56E8BEC5 /* Pods */,
+				A16642F8822FA6E6064D4A79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +112,7 @@
 				27A484B61D650E4100B3C705 /* Assets.xcassets */,
 				27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */,
 				27A484BB1D650E4100B3C705 /* Info.plist */,
+				27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */,
 			);
 			path = SwipeMe;
 			sourceTree = "<group>";
@@ -125,6 +135,23 @@
 			path = SwipeMeUITests;
 			sourceTree = "<group>";
 		};
+		93AB0EB265D9A57C56E8BEC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				628D83B79A30F5CD45158FCA /* Pods-SwipeMe.debug.xcconfig */,
+				782FA490898E8BE1B1EC39D4 /* Pods-SwipeMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A16642F8822FA6E6064D4A79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27A484D41D650E4100B3C705 /* Build configuration list for PBXNativeTarget "SwipeMe" */;
 			buildPhases = (
+				73E037F2C57727135F482301 /* [CP] Check Pods Manifest.lock */,
 				27A484A81D650E4100B3C705 /* Sources */,
 				27A484A91D650E4100B3C705 /* Frameworks */,
 				27A484AA1D650E4100B3C705 /* Resources */,
+				653F931F9796195A55F9D501 /* [CP] Embed Pods Frameworks */,
+				3C3DDD9E708B340053D279A5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A484BA1D650E4100B3C705 /* LaunchScreen.storyboard in Resources */,
+				27A484DE1D65103E00B3C705 /* GoogleService-Info.plist in Resources */,
 				27A484B71D650E4100B3C705 /* Assets.xcassets in Resources */,
 				27A484B51D650E4100B3C705 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +281,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C3DDD9E708B340053D279A5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		653F931F9796195A55F9D501 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73E037F2C57727135F482301 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27A484A81D650E4100B3C705 /* Sources */ = {
@@ -397,6 +476,7 @@
 		};
 		27A484D51D650E4100B3C705 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 628D83B79A30F5CD45158FCA /* Pods-SwipeMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwipeMe/Info.plist;
@@ -409,6 +489,7 @@
 		};
 		27A484D61D650E4100B3C705 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 782FA490898E8BE1B1EC39D4 /* Pods-SwipeMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwipeMe/Info.plist;
@@ -484,6 +565,7 @@
 				27A484D61D650E4100B3C705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27A484D71D650E4100B3C705 /* Build configuration list for PBXNativeTarget "SwipeMeTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +574,7 @@
 				27A484D91D650E4100B3C705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27A484DA1D650E4100B3C705 /* Build configuration list for PBXNativeTarget "SwipeMeUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +583,7 @@
 				27A484DC1D650E4100B3C705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
