@@ -18,7 +18,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         //TODO: Get rid of this shit and do it in the view
         // Facebook Btn and Delegate
-        loginButton.center = self.view.center
+        loginButton.center = CGPointMake(320.0, 480.0)
         loginButton.delegate = self
         
         self.view!.addSubview(loginButton)
@@ -36,7 +36,8 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 // Triple check everything in here
-                print("Nigga we made it")
+                print("Nigga we made it:")
+                
             }
         }
     }
