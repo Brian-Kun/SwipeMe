@@ -7,19 +7,44 @@
 //
 
 import UIKit
+import Firebase
+import FBSDKLoginKit
 
-class LogInViewController: UIViewController {
-
+class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
+    let loginButton = FBSDKLoginButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //TODO: Get rid of this shit and do it in the view
+        // Facebook Btn and Delegate
+        loginButton.center = self.view.center
+        loginButton.delegate = self
+        
+        self.view!.addSubview(loginButton)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //Facebook login with Firabase Auth
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        if error != nil {
+            //Something went wrong
+            //TODO: Create error modals
+            print(error)
+        }else{
+            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            
+            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                // Triple check everything in here
+                print("Nigga we made it")
+            }
+        }
     }
-
+    
+    //Do nothing here, for now.
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        //
+    }
 
 }
 
