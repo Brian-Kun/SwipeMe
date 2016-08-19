@@ -33,7 +33,6 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     }
     
     
-    
 
     @IBAction func googleBtnPressed(sender: UIButton) {
         GIDSignIn.sharedInstance().uiDelegate = self

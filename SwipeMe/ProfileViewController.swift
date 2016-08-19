@@ -17,6 +17,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
+        self.userImage.clipsToBounds = true
+        
         if let user = FIRAuth.auth()?.currentUser {
             let name = user.displayName
 //            let email = user.email
