@@ -10,48 +10,29 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
-import FBSDKLoginKit
 
-class LogInViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate  {
+class LogInViewController: UIViewController, GIDSignInUIDelegate{
     
-    let loginButton = FBSDKLoginButton()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Get rid of this shit and do it in the view
-        // Facebook Btn and Delegate
-        loginButton.center = self.view.center
-        loginButton.delegate = self
-        self.view!.addSubview(loginButton)
-      
-        
+        //Firebase Login setup
         GIDSignIn.sharedInstance().uiDelegate = self
         
-        // Uncomment to automatically sign in the user.
-        //GIDSignIn.sharedInstance().signInSilently()
-        
-    }
-    
-    
-    //Facebook login with Firabase Auth
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        
-            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-            
-            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                // Triple check everything in here
-                print("User Logged In \(user?.displayName)")
-                print("Logged in with facebook")
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if let user = user {
+                print("User \((user.displayName)!) is already signed in! Moving to next screen!")
+                self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
+            } else {
                 
             }
+        }
         
     }
     
-    //Do nothing here, for now.
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        //
-    }
+    
     
 
     @IBAction func googleBtnPressed(sender: UIButton) {

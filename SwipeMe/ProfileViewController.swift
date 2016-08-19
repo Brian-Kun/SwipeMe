@@ -7,11 +7,28 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            let name = user.displayName
+//            let email = user.email
+            let photoUrl = user.photoURL
+//            let uid = user.uid
+            
+            self.nameLbl.text = name
+            let imageData = NSData(contentsOfURL: photoUrl!)
+            self.userImage.image = UIImage(data: imageData!)
+        } else {
+            // No user is signed in.
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -22,6 +39,10 @@ class ProfileViewController: UIViewController {
     }
     
 
+    @IBAction func logOutBtnPressed(sender: UIButton) {
+        try! FIRAuth.auth()!.signOut()
+       
+    }
     /*
     // MARK: - Navigation
 

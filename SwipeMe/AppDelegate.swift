@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
-import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
@@ -26,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        //Facebook Login Setup
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
     
@@ -64,20 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             // ...
     }
     
-//    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
-//        if let error = error {
-//            print(error.localizedDescription)
-//            return
-//        }
-//        
-//        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-//        
-//        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-//            // ...
-//        }
-//        
-//    }
-//    
     
    
     func applicationWillResignActive(application: UIApplication) {
@@ -95,22 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        //Necesary for Facebook Login
-        FBSDKAppEvents.activateApp()
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    //Facebook sign in setup
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        
-        //Required for facebook login
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-
-
+   
 
 }
 
