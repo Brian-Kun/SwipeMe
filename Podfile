@@ -11,11 +11,7 @@ target 'SwipeMe' do
   
   pod 'GoogleSignIn'
   
-  pod 'FBSDKCoreKit'
-  
-  pod 'FBSDKLoginKit'
-  
-  pod 'FBSDKShareKit'
+  pod 'Firebase/Storage'
 
 
 end
