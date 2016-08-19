@@ -37,15 +37,11 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     //Facebook login with Firabase Auth
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
-        if error == error {
-            //Something went wrong
-            //TODO: Create error modals
-            print(error)
-        }
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 // Triple check everything in here
+                print("User Logged In \(user?.displayName)")
                 print("Logged in with facebook")
                 
             }

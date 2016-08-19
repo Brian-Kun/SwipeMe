@@ -13,7 +13,7 @@ import GoogleSignIn
 import FBSDKCoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
     var window: UIWindow?
 
@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
            
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                print("User Logged in: \((user?.displayName)!)")
                 print("Logged in with Google")
             }
     }
@@ -63,7 +64,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // ...
     }
     
-      
+//    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
+//        if let error = error {
+//            print(error.localizedDescription)
+//            return
+//        }
+//        
+//        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+//        
+//        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+//            // ...
+//        }
+//        
+//    }
+//    
+    
    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
