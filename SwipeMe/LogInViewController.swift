@@ -8,34 +8,59 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import GoogleSignIn
+import FBSDKLoginKit
 
-class LogInViewController: UIViewController,GIDSignInUIDelegate {
+class LogInViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate  {
     
-
+    let loginButton = FBSDKLoginButton()
     
-    @IBAction func Clicked(sender: UIButton) {
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn();
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TODO: Get rid of this shit and do it in the view
+        // Facebook Btn and Delegate
+        loginButton.center = self.view.center
+        loginButton.delegate = self
+        self.view!.addSubview(loginButton)
       
         
         GIDSignIn.sharedInstance().uiDelegate = self
         
         // Uncomment to automatically sign in the user.
-//        GIDSignIn.sharedInstance().signInSilently()
+        //GIDSignIn.sharedInstance().signInSilently()
         
-        // TODO(developer) Configure the sign-in button look/feel
-        // ...
-        // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    
+    //Facebook login with Firabase Auth
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        if error == error {
+            //Something went wrong
+            //TODO: Create error modals
+            print(error)
+        }
+            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            
+            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                // Triple check everything in here
+                print("Logged in with facebook")
+                
+            }
+        
+    }
+    
+    //Do nothing here, for now.
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        //
+    }
+    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func googleBtnPressed(sender: UIButton) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn();
     }
 
 
