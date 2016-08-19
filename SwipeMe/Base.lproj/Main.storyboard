@@ -29,16 +29,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3pw-J5-NAD">
+                                <rect key="frame" x="290" y="381" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="top" secondItem="Pak-QY-Oay" secondAttribute="bottom" constant="98" id="1mw-i8-gwB"/>
+                            <constraint firstItem="3pw-J5-NAD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LQT-tC-7Zq"/>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d1n-4S-QVN"/>
+                            <constraint firstItem="3pw-J5-NAD" firstAttribute="top" secondItem="8pv-dG-SFs" secondAttribute="bottom" constant="58" id="q4o-Jg-SOe"/>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ude-ux-oox"/>
                             <constraint firstItem="Pak-QY-Oay" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ytc-kc-L1O"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginIndicator" destination="3pw-J5-NAD" id="3q1-3V-1Pg"/>
                         <segue destination="UwY-WP-CR5" kind="show" identifier="userLoggedInSegue" id="SMi-Sq-HzJ"/>
                     </connections>
                 </viewController>

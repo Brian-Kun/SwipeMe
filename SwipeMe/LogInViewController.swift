@@ -13,6 +13,7 @@ import GoogleSignIn
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate{
     
+    @IBOutlet weak var loginIndicator: UIActivityIndicatorView!
    
     
     override func viewDidLoad() {
@@ -24,6 +25,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
         //Authentication listener that waits until the state changes
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if let user = user {
+                self.loginIndicator.stopAnimating()
                 //Once the state changes to logged in, it moves the user to the next screen
                 print("User \((user.displayName)!) is already signed in! Moving to next screen!")
                 self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
@@ -37,6 +39,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     
 
     @IBAction func googleBtnPressed(sender: UIButton) {
+        loginIndicator.startAnimating()
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn();
     }
