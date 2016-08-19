@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
             if let error = error {
+                print("Google sign in error, check app delegate -Brian")
                 print(error.localizedDescription)
                 return
             }
@@ -49,8 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
            
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                print("User Logged in: \((user?.displayName)!)")
-                print("Logged in with Google")
+                print("Succesfull log in!")
             }
     }
     

@@ -13,47 +13,45 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var uidLbl: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Make user image
         self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
         self.userImage.clipsToBounds = true
         
+        //Check if user is logged in. (Migth remove )
         if let user = FIRAuth.auth()?.currentUser {
-            let name = user.displayName
-//            let email = user.email
-            let photoUrl = user.photoURL
-//            let uid = user.uid
             
-            self.nameLbl.text = name
-            let imageData = NSData(contentsOfURL: photoUrl!)
-            self.userImage.image = UIImage(data: imageData!)
-        } else {
-            // No user is signed in.
+            //fetch for user image,name,email, and uid
+            let name = user.displayName
+            let email = user.email
+            let photoUrl = user.photoURL
+            let uid = user.uid
+            
+            //Display User info
+            nameLbl.text = name
+            emailLbl.text = email
+            uidLbl.text = uid
+            userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
         }
 
-        // Do any additional setup after loading the view.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
     @IBAction func logOutBtnPressed(sender: UIButton) {
+        print("User is being logged out...")
         try! FIRAuth.auth()!.signOut()
+        performSegueWithIdentifier("userLoggedOutSegue", sender: self)
+        
        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

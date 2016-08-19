@@ -21,8 +21,10 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
         //Firebase Login setup
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        //Authentication listener that waits until the state changes
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if let user = user {
+                //Once the state changes to logged in, it moves the user to the next screen
                 print("User \((user.displayName)!) is already signed in! Moving to next screen!")
                 self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
             } else {
@@ -30,7 +32,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
             }
         }
         
-    }
+    }//End of viewDidLoad()
     
     
 
