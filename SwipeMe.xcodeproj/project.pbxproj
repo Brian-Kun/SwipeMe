@@ -10,6 +10,7 @@
 		1C431D0C1D66A4BD00736F70 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */; };
 		1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0D1D66A4E400736F70 /* RequestViewController.swift */; };
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
+		2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764FC8B1D68D53000DCEEC9 /* Request.swift */; };
 		27A484B01D650E4100B3C705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484AF1D650E4100B3C705 /* AppDelegate.swift */; };
 		27A484B21D650E4100B3C705 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484B11D650E4100B3C705 /* LogInViewController.swift */; };
 		27A484B51D650E4100B3C705 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A484B31D650E4100B3C705 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		1C431D0D1D66A4E400736F70 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		1C431D0F1D66A50900736F70 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2764FC8B1D68D53000DCEEC9 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		27A484AC1D650E4100B3C705 /* SwipeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A484AF1D650E4100B3C705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27A484B11D650E4100B3C705 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2764FC8D1D68D54000DCEEC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2764FC8B1D68D53000DCEEC9 /* Request.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2764FC8E1D68D55000DCEEC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				27A484B31D650E4100B3C705 /* Main.storyboard */,
+				27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */,
+				27A484B61D650E4100B3C705 /* Assets.xcassets */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		27A484A31D650E4000B3C705 = {
 			isa = PBXGroup;
 			children = (
@@ -114,10 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				27A484AF1D650E4100B3C705 /* AppDelegate.swift */,
+				2764FC8D1D68D54000DCEEC9 /* Model */,
+				2764FC8E1D68D55000DCEEC9 /* View */,
 				4E5B159C1D677A48002D021D /* Controllers */,
-				27A484B31D650E4100B3C705 /* Main.storyboard */,
-				27A484B61D650E4100B3C705 /* Assets.xcassets */,
-				27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */,
 				27A484BB1D650E4100B3C705 /* Info.plist */,
 				27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */,
 				1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */,
@@ -355,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A484B21D650E4100B3C705 /* LogInViewController.swift in Sources */,
+				2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */,
 				1C431D0C1D66A4BD00736F70 /* FeedViewController.swift in Sources */,
 				1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */,
 				1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */,

@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Profile"
+        
         //Make user image
         self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
         self.userImage.clipsToBounds = true
