@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class RequestTableViewController: UITableViewController {
     
-     var requestArray = [Request]()
+    var requestArray = [Request]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
