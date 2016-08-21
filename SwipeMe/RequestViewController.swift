@@ -95,7 +95,7 @@ class RequestTableViewController: UITableViewController {
     }
     
     //method to delete requests created at a specified time
-    func deleteRequestFromString(time : String!){
+    func deleteRequest(time : String!){
         // creates a reference in the databases to a set of requests ordered by the time it was created and picks the set of requ-
         //ests created at the time specified at the parameter of the method
         let ref=FIRDatabase.database().reference().child("Requests").queryOrderedByChild("Created_At").queryEqualToValue(time)
@@ -105,9 +105,9 @@ class RequestTableViewController: UITableViewController {
             //iterate through the array of requests
             while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                 //get a root reference to a request
-                let ref =  FIRDatabase.database().reference().childByAppendingPath("Requests")
+                let ref =  FIRDatabase.database().reference().child("Requests")
                 //get the key reference to specify the request
-                let nodeToRemove = ref.childByAppendingPath(rest.key)
+                let nodeToRemove = ref.child(rest.key)
                 //remove the request from Firebase
                 nodeToRemove.removeValue()
                 
@@ -115,7 +115,6 @@ class RequestTableViewController: UITableViewController {
         })
         
     }
-    
     
     
     func currentDate() -> String{
