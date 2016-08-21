@@ -50,7 +50,10 @@ class ProfileViewController: UIViewController {
     @IBAction func logOutBtnPressed(sender: UIButton) {
         print("User is being logged out...")
         try! FIRAuth.auth()!.signOut()
-        performSegueWithIdentifier("userLoggedOutSegue", sender: self)
+        
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LogInScreen") as UIViewController
+        
+        self.presentViewController(viewController, animated: true, completion: nil)
         
        
     }
