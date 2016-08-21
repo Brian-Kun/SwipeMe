@@ -12,6 +12,7 @@
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
 		1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */; };
 		1CA8733B1D68DF44003DD609 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8733A1D68DF44003DD609 /* PhoneNumber.swift */; };
+		272524F31D69F3F600D0F808 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272524F21D69F3F600D0F808 /* FeedPost.swift */; };
 		2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2764FC8B1D68D53000DCEEC9 /* Request.swift */; };
 		27A484B01D650E4100B3C705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484AF1D650E4100B3C705 /* AppDelegate.swift */; };
 		27A484B21D650E4100B3C705 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484B11D650E4100B3C705 /* LogInViewController.swift */; };
@@ -48,6 +49,7 @@
 		1C431D0F1D66A50900736F70 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		1CA8733A1D68DF44003DD609 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		272524F21D69F3F600D0F808 /* FeedPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		2764FC8B1D68D53000DCEEC9 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		27A484AC1D650E4100B3C705 /* SwipeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A484AF1D650E4100B3C705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				1CA8733A1D68DF44003DD609 /* PhoneNumber.swift */,
 				2764FC8B1D68D53000DCEEC9 /* Request.swift */,
+				272524F21D69F3F600D0F808 /* FeedPost.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -171,10 +174,10 @@
 			isa = PBXGroup;
 			children = (
 				27A484B11D650E4100B3C705 /* LogInViewController.swift */,
+				1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */,
 				1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */,
 				1C431D0D1D66A4E400736F70 /* RequestViewController.swift */,
 				1C431D0F1D66A50900736F70 /* ProfileViewController.swift */,
-				1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */,
 				1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */,
 				1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */,
+				272524F31D69F3F600D0F808 /* FeedPost.swift in Sources */,
 				27A484B01D650E4100B3C705 /* AppDelegate.swift in Sources */,
 				1CA8733B1D68DF44003DD609 /* PhoneNumber.swift in Sources */,
 			);

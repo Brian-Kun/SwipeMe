@@ -9,9 +9,11 @@
 import Foundation
 
 struct Request {
+    
     let displayName: String!
     let UID : String!
     let createdAt : String!
     let location :String!
-    let answered : Bool!
+    let requestID: String!//Made by firebase
 }
+

@@ -23,6 +23,10 @@ class PhoneNumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhoneNumberViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+        
         getPhoneNumber(user?.uid)
         
         //Check if user is logged in. (Migth remove )
@@ -89,7 +93,9 @@ class PhoneNumberViewController: UIViewController {
             if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
                 result = phoneNumberValue
                 self.phoneTextField.text = result
-                print("Phone number is \(result)")
+                if(result.characters.count == 10){
+                    self.performSegueWithIdentifier("userConfirmedSegue", sender: self)
+                }
             }
         })
         
@@ -100,9 +106,14 @@ class PhoneNumberViewController: UIViewController {
     
     func displayAlert(title:String, message: String){
         let alert = UIAlertController(title: title,
-                                      message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                                      message: message,
+                                      preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 
