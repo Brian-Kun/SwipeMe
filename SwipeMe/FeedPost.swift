@@ -11,7 +11,7 @@ import Foundation
 struct FeedPost {
     
     let requestUserUID:String!
-    let requestUserDisplayNam:String!
+    let requestUserDisplayName:String!
     let requestLocation:String!
     let postUserUID:String
     let postUserDisplayName:String!

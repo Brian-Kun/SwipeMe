@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C431D0C1D66A4BD00736F70 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */; };
+		1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */; };
 		1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0D1D66A4E400736F70 /* RequestViewController.swift */; };
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
 		1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */; };
@@ -44,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwipeMe-Bridging-Header.h"; sourceTree = "<group>"; };
-		1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		1C431D0D1D66A4E400736F70 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		1C431D0F1D66A50900736F70 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			children = (
 				27A484B11D650E4100B3C705 /* LogInViewController.swift */,
 				1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */,
-				1C431D0B1D66A4BD00736F70 /* FeedViewController.swift */,
+				1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */,
 				1C431D0D1D66A4E400736F70 /* RequestViewController.swift */,
 				1C431D0F1D66A50900736F70 /* ProfileViewController.swift */,
 			);
@@ -384,7 +384,7 @@
 			files = (
 				27A484B21D650E4100B3C705 /* LogInViewController.swift in Sources */,
 				2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */,
-				1C431D0C1D66A4BD00736F70 /* FeedViewController.swift in Sources */,
+				1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */,
 				1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */,
 				1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */,
 				1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */,
