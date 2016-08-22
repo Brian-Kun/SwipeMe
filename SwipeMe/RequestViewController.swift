@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import XLActionController
 
 class RequestTableViewController: UITableViewController {
     
@@ -68,30 +69,51 @@ class RequestTableViewController: UITableViewController {
     
     //Display the array of requests in the tableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("requestCell")
-        let requestCellLbl = cell?.viewWithTag(1) as! UILabel
+        let cell = tableView.dequeueReusableCellWithIdentifier("requestCell") as! RequestCell
         
         let requestUser = requestArray[indexPath.row].displayName
         let requestLocation = requestArray[indexPath.row].location
         
-        requestCellLbl.text = "\(requestUser) is looking for a meal swipe at \(requestLocation)"
+        cell.textLbl.text = "\(requestUser) is looking for a meal swipe at \(requestLocation)"
         
-        return cell!
+        //MARK: THIS IS JUST AN EXAMPLE. NEED FUNCTION THAT RETURNS USER WHEN GIVEN UID
+         if let user = FIRAuth.auth()?.currentUser {
+            //Make user image
+            cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
+            cell.userImage.clipsToBounds = true
+
+            let photoUrl = user.photoURL
+            cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+        }
+        
+        return cell
     }
     
     //Pop up for users to type their dining commons
     func showPopUpForRequest(){
-        let alert = UIAlertController(title: "Request a Swipe", message: "Where do you want to request a swipe?", preferredStyle: UIAlertControllerStyle.Alert)
+        let actionController = PeriscopeActionController()
+        actionController.headerData = "Where do you want a meal swipe?"
+        actionController.addSection(PeriscopeSection())
         
-        alert.addTextFieldWithConfigurationHandler { (requestTextField) in }
-        
-        alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
-            let requestText = alert.textFields![0] as UITextField
-            self.createRequest(requestText.text!)
-            alert.dismissViewControllerAnimated(true, completion: nil)
+        actionController.addAction(Action("Worcester Commons", style: .Cancel, handler: { action in
+            self.createRequest("Worcester Commons")
         }))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        actionController.addAction(Action("Hampshire Commons", style: .Cancel, handler: { action in
+            self.createRequest("Hampshire Commons")
+        }))
+        actionController.addAction(Action("Franklin Commons", style: .Cancel, handler: { action in
+            self.createRequest("Franklin Commons")
+        }))
+        actionController.addAction(Action("Berkshire Commons", style: .Cancel, handler: { action in
+            self.createRequest("Berkshire Commons")
+        }))
+        actionController.addAction(Action("Blue Wall", style: .Cancel, handler: { action in
+            self.createRequest("Blue Wall")
+        }))
+        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
+        }))
+        presentViewController(actionController, animated: true, completion: nil)
         
     }
     

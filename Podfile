@@ -14,6 +14,10 @@ target 'SwipeMe' do
   pod 'GoogleSignIn'
   
   pod 'Firebase/Storage'
+  
+  pod 'XLActionController'
+  
+  pod 'XLActionController/Periscope'
 
 
 end

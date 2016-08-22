@@ -45,6 +45,9 @@ class FeedTableViewController: UITableViewController {
         let requestUser = feedPostArray[indexPath.row].requestUserDisplayName
         let requestLocation = feedPostArray[indexPath.row].requestLocation
         requestCellLabel.text = "\(postUser) swiped \(requestUser) at \(requestLocation)"
+        
+        cell!.layoutMargins = UIEdgeInsetsZero;
+        cell!.preservesSuperviewLayoutMargins = false
         return cell!
         
     }

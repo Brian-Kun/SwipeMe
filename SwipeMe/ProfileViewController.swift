@@ -14,7 +14,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
-    @IBOutlet weak var uidLbl: UILabel!
     
     
     override func viewDidLoad() {
@@ -33,12 +32,10 @@ class ProfileViewController: UIViewController {
             let name = user.displayName
             let email = user.email
             let photoUrl = user.photoURL
-            let uid = user.uid
             
             //Display User info
             nameLbl.text = name
             emailLbl.text = email
-            uidLbl.text = uid
             userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
         }
 
