@@ -41,9 +41,10 @@ class RequestTableViewController: UITableViewController {
             let UID = snapshot.value!["UID"] as! String
             let createdAt = snapshot.value!["createdAt"] as! String
             let location = snapshot.value!["location"] as! String
+            let photoURL = snapshot.value!["userPhotoURL"] as! String
             let childAutoID = snapshot.key
 
-            self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, requestID: childAutoID), atIndex: 0)
+            self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, requestID: childAutoID), atIndex: 0)
             self.tableView.reloadData()
         })
         
@@ -78,22 +79,21 @@ class RequestTableViewController: UITableViewController {
         
         let requestUser = requestArray[indexPath.row].displayName
         let requestLocation = requestArray[indexPath.row].location
+        let requestUserPhotoUrl = requestArray[indexPath.row].userPhotoURL
         
         cell.textLbl.text = "\(requestUser) is looking for a meal swipe at \(requestLocation)"
         
-        //MARK: THIS IS JUST AN EXAMPLE. NEED FUNCTION THAT RETURNS USER WHEN GIVEN UID
-         if let user = FIRAuth.auth()?.currentUser {
+    
             //Make user image
             cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
             cell.userImage.clipsToBounds = true
 
-            let photoUrl = user.photoURL
+            let photoUrl = NSURL(string: requestUserPhotoUrl)
             cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
             
             
             cell.layoutMargins = UIEdgeInsetsZero;
             cell.preservesSuperviewLayoutMargins = false
-        }
         
         return cell
     }
@@ -133,7 +133,8 @@ class RequestTableViewController: UITableViewController {
         let request : [String : AnyObject] = ["displayName":user.displayName!,
                                               "UID":user.uid,
                                               "createdAt":currentDate(),
-                                              "location":location]
+                                              "location":location,
+                                              "userPhotoURL": String(user.photoURL!)]
         
         let databaseRef = FIRDatabase.database().reference()
         

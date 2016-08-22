@@ -195,8 +195,11 @@
                                 <rect key="frame" x="25" y="449" width="555" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Log out">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.81199919871794868" green="0.0" blue="0.0076017379993274861" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logOutBtnPressed:" destination="pbo-P3-gPV" eventType="touchUpInside" id="5mQ-2Y-iw0"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NyJ-cf-QZr">
                                 <rect key="frame" x="531" y="303" width="51" height="31"/>
