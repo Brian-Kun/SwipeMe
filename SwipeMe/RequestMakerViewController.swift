@@ -51,6 +51,7 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     
     
     func hidePlaceHolder(){
+        textView.becomeFirstResponder()
         placeHolderLbl.hidden = true
         textView.removeGestureRecognizer(textViewGestureRecognizer)
     }
