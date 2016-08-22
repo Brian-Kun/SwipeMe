@@ -15,6 +15,7 @@ struct Request {
     let createdAt : String!
     let location :String!
     let userPhotoURL: String!
+    let comment: String!
     let requestID: String!//Made by firebase
 }
 
