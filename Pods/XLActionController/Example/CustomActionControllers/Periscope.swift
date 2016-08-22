@@ -120,7 +120,7 @@ public class PeriscopeActionController: ActionController<PeriscopeCell, String, 
             cell.setup(action.data, detail: nil, image: nil)
             cell.separatorView?.hidden = indexPath.item == self!.collectionView.numberOfItemsInSection(indexPath.section) - 1
             cell.alpha = action.enabled ? 1.0 : 0.5
-            cell.actionTitleLabel?.textColor = action.style == .Destructive ? UIColor(red: 210/255.0, green: 77/255.0, blue: 56/255.0, alpha: 1.0) : UIColor(red: 0.28, green: 0.64, blue: 0.76, alpha: 1.0)
+            cell.actionTitleLabel?.textColor = action.style == .Destructive ? UIColor(red: 210/255.0, green: 77/255.0, blue: 56/255.0, alpha: 1.0) : UIColor(red:0.13, green:0.59, blue:0.95, alpha:1.0)
         }
     }
 }

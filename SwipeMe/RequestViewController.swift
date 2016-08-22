@@ -23,6 +23,11 @@ class RequestTableViewController: UITableViewController {
         
         //Adds the + button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .Plain, target: self, action: #selector(showPopUpForRequest))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+        let size = 24.00
+        let font = UIFont.boldSystemFontOfSize(CGFloat(size))
+        let attributes = [NSFontAttributeName: font]
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes(attributes, forState: .Normal)
         
         
         //Pulls data from database and updates it by adding it to the requestArray
@@ -84,6 +89,10 @@ class RequestTableViewController: UITableViewController {
 
             let photoUrl = user.photoURL
             cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+            
+            
+            cell.layoutMargins = UIEdgeInsetsZero;
+            cell.preservesSuperviewLayoutMargins = false
         }
         
         return cell
