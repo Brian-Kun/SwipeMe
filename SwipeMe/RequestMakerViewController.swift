@@ -19,11 +19,18 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var placeHolderLbl: UILabel!
     @IBOutlet var textViewGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var characterCounterLbl: UILabel!
     
     var requestLocation = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textView.delegate = self
+        
+        
+        
+        characterCounterLbl.text = "0/40"
         
         textViewGestureRecognizer.addTarget(self, action: #selector(hidePlaceHolder))
         textView.addGestureRecognizer(textViewGestureRecognizer)
@@ -73,6 +80,15 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
             databaseRef.child("Requests").childByAutoId().setValue(request)
             
         }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        self.characterCounterLbl.text = "\((self.characterCounterLbl.text?.characters.count)!)/40"
+        return true
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+         self.characterCounterLbl.text = "\((self.characterCounterLbl.text?.characters.count)!)/40"
     }
     
     func currentDate() -> String{
