@@ -359,6 +359,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="textLbl" destination="sR9-FU-mRd" id="wRQ-yG-Rbs"/>
+                                    <outlet property="userCommentLbl" destination="aA4-CL-LFg" id="QWe-h3-Eql"/>
                                     <outlet property="userImage" destination="unZ-yD-cdo" id="4kC-Jz-PPk"/>
                                 </connections>
                             </tableViewCell>
@@ -495,7 +496,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWE-9I-2PE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Cjy-re-bpI"/>
             </objects>
-            <point key="canvasLocation" x="3047" y="-328"/>
+            <point key="canvasLocation" x="2980" y="-328"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NOc-w3-tyY">

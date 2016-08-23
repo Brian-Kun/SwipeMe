@@ -28,8 +28,6 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
         
         textView.delegate = self
         
-        
-        
         characterCounterLbl.text = "0/40"
         
         textViewGestureRecognizer.addTarget(self, action: #selector(hidePlaceHolder))
@@ -58,9 +56,9 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     
     
     func hidePlaceHolder(){
+        textView.removeGestureRecognizer(textViewGestureRecognizer)
         textView.becomeFirstResponder()
         placeHolderLbl.hidden = true
-        textView.removeGestureRecognizer(textViewGestureRecognizer)
     }
 
     
@@ -73,6 +71,7 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
                                                   "UID":user.uid,
                                                   "createdAt":currentDate(),
                                                   "location":location,
+                                                  "comment":comment,
                                                   "userPhotoURL": String(user.photoURL!)]
             
             let databaseRef = FIRDatabase.database().reference()
@@ -82,14 +81,6 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
         }
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        self.characterCounterLbl.text = "\((self.characterCounterLbl.text?.characters.count)!)/40"
-        return true
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-         self.characterCounterLbl.text = "\((self.characterCounterLbl.text?.characters.count)!)/40"
-    }
     
     func currentDate() -> String{
         let dateformatter = NSDateFormatter()
@@ -99,9 +90,12 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func submitBtnPressed(sender: UIButton) {
-        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
-        print("Request created for \(requestLocation)")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        if(requestLocation.characters.count != 0 && textView.text.characters.count != 0){
+            createRequest(requestLocation, comment: textView.text!)
+            UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func cancelBrnPressed(sender: UIButton) {

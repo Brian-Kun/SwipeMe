@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        //Make status bar pretty
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
         
         return true
     }

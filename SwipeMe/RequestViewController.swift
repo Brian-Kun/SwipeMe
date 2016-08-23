@@ -18,6 +18,7 @@ class RequestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Navigation controller title
         self.title = "Meal Requests"
         
@@ -81,6 +82,7 @@ class RequestTableViewController: UITableViewController {
         let requestUser = requestArray[indexPath.row].displayName
         let requestLocation = requestArray[indexPath.row].location
         let requestUserPhotoUrl = requestArray[indexPath.row].userPhotoURL
+        let requestUserComment = requestArray[indexPath.row].comment
         
         let fullNameArr = requestUser.characters.split{$0 == " "}.map(String.init)
         let firstName: String = fullNameArr[0]
@@ -88,6 +90,7 @@ class RequestTableViewController: UITableViewController {
         let formattedString = NSMutableAttributedString()
         formattedString.bold("\(firstName)").normal(" needs a swipe at ").bold("\(requestLocation)")
         cell.textLbl.attributedText = formattedString
+        cell.userCommentLbl.text = requestUserComment
     
     
             //Make user image
@@ -222,6 +225,8 @@ class RequestTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+   
     
 }
 
