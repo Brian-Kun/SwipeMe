@@ -13,8 +13,12 @@ struct FeedPost {
     let requestUserUID:String!
     let requestUserDisplayName:String!
     let requestLocation:String!
+    let requestUserPhotoUrl : String!
     let postUserUID:String
     let postUserDisplayName:String!
+    let postUserPhotoURL: String!
     let createdAt:String!
+    
+    
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C0CBDD01D6BDCA700169139 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBDCF1D6BDCA700169139 /* FeedCell.swift */; };
 		1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */; };
 		1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0D1D66A4E400736F70 /* RequestViewController.swift */; };
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C0CBDCF1D6BDCA700169139 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwipeMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		1C431D0D1D66A4E400736F70 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				2764FC8B1D68D53000DCEEC9 /* Request.swift */,
 				272524F21D69F3F600D0F808 /* FeedPost.swift */,
 				272525171D6A607D00D0F808 /* RequestCell.swift */,
+				1C0CBDCF1D6BDCA700169139 /* FeedCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */,
 				1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */,
 				1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */,
+				1C0CBDD01D6BDCA700169139 /* FeedCell.swift in Sources */,
 				1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */,
 				1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */,
 				272524F31D69F3F600D0F808 /* FeedPost.swift in Sources */,

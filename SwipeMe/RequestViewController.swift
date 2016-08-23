@@ -192,16 +192,18 @@ class RequestTableViewController: UITableViewController {
     }
     
     //Created a post in the feed database
-    func createFeedPost(requestUserUID:String, requestUserDisplayName:String, requestLocation:String){
+    func createFeedPost(requestUserUID:String, requestUserDisplayName:String, requestLocation:String, requestUserPhotoUrl:String){
         
         //Check if user is logged in. (Migth remove )
         if let user = FIRAuth.auth()?.currentUser {
             let feedPost : [String : AnyObject] = ["requestUserUID":requestUserUID,
                                                    "requestUserDisplayName":requestUserDisplayName,
                                                    "requestLocation":requestLocation,
+                                                   "requestUserPhotoUrl" : requestUserPhotoUrl,
                                                    "postUserUID" : user.uid,
                                                    "postUserDisplayName": user.displayName!,
-                                                   "createdAt":currentDate()]
+                                                   "createdAt":currentDate(),
+                                                   "postUserPhotoUrl":String(user.photoURL!)]
             let databaseRef = FIRDatabase.database().reference()
             databaseRef.child("Feed Posts").childByAutoId().setValue(feedPost)
         }
@@ -217,7 +219,8 @@ class RequestTableViewController: UITableViewController {
                     let requestID = self.requestArray[indexPath.row].requestID
                     let requestDisplaName = self.requestArray[indexPath.row].displayName
                     let requestLocation = self.requestArray[indexPath.row].location
-                    self.createFeedPost(requestUserUID, requestUserDisplayName: requestDisplaName, requestLocation: requestLocation)
+                    let requestPhoto = self.requestArray[indexPath.row].userPhotoURL
+                    self.createFeedPost(requestUserUID, requestUserDisplayName: requestDisplaName, requestLocation: requestLocation, requestUserPhotoUrl: requestPhoto)
                     
                     ///update answered variable on db to true
                     self.deleteRequestWithRequestID(requestID)
