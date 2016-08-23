@@ -50,12 +50,14 @@ class FeedTableViewController: UITableViewController {
         
         cell.postUserImage.layer.cornerRadius = cell.postUserImage.frame.size.width/2
         cell.postUserImage.clipsToBounds = true
+        cell.postUserImage.layer.borderWidth = 2
+        cell.postUserImage.layer.borderColor = UIColor.whiteColor().CGColor
+        
         
         cell.requestUserImage.layer.cornerRadius = cell.requestUserImage.frame.size.width/2
         cell.requestUserImage.clipsToBounds = true
         
-        
-        
+    
         let postUserPhotoUrl = NSURL(string: feedPostArray[indexPath.row].postUserPhotoURL)
         cell.postUserImage.image = UIImage(data: ( NSData(contentsOfURL: postUserPhotoUrl!))! )
         

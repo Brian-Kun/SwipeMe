@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -256,38 +256,38 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-fB-UNI" id="xRt-K3-g7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pYE-FD-94r">
-                                            <rect key="frame" x="43" y="18" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
+                                            <rect key="frame" x="8" y="8" width="35" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="oBT-EG-HIM"/>
-                                                <constraint firstAttribute="width" constant="50" id="zPt-uu-Fzr"/>
+                                                <constraint firstAttribute="height" constant="35" id="9VZ-RQ-waP"/>
+                                                <constraint firstAttribute="width" constant="35" id="UD2-FK-lnW"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWz-QW-jI1">
-                                            <rect key="frame" x="108" y="29" width="484" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="83" y="17" width="521" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
-                                            <rect key="frame" x="8" y="0.0" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pYE-FD-94r">
+                                            <rect key="frame" x="28" y="29" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="9VZ-RQ-waP"/>
-                                                <constraint firstAttribute="width" constant="50" id="UD2-FK-lnW"/>
+                                                <constraint firstAttribute="height" constant="40" id="oBT-EG-HIM"/>
+                                                <constraint firstAttribute="width" constant="40" id="zPt-uu-Fzr"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pYE-FD-94r" firstAttribute="leading" secondItem="xRt-K3-g7f" secondAttribute="leadingMargin" constant="35" id="FR8-9E-Uy0"/>
-                                        <constraint firstItem="pYE-FD-94r" firstAttribute="top" secondItem="xRt-K3-g7f" secondAttribute="topMargin" constant="10" id="Qaf-V4-Joq"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="9ej-b0-xDU" secondAttribute="bottom" constant="18" id="QjI-e4-JBZ"/>
+                                        <constraint firstItem="pYE-FD-94r" firstAttribute="leading" secondItem="xRt-K3-g7f" secondAttribute="leadingMargin" constant="20" id="FR8-9E-Uy0"/>
+                                        <constraint firstItem="pYE-FD-94r" firstAttribute="top" secondItem="xRt-K3-g7f" secondAttribute="topMargin" constant="21" id="Qaf-V4-Joq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9ej-b0-xDU" secondAttribute="bottom" constant="25.5" id="QjI-e4-JBZ"/>
                                         <constraint firstItem="XWz-QW-jI1" firstAttribute="leading" secondItem="pYE-FD-94r" secondAttribute="trailing" constant="15" id="XEE-Z2-c4W"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XWz-QW-jI1" secondAttribute="trailing" id="fZd-dH-dY8"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XWz-QW-jI1" secondAttribute="trailing" constant="-12" id="fZd-dH-dY8"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="9ej-b0-xDU" secondAttribute="leading" id="ghv-h6-C5A"/>
-                                        <constraint firstItem="XWz-QW-jI1" firstAttribute="top" secondItem="xRt-K3-g7f" secondAttribute="topMargin" constant="21" id="lKE-M0-21K"/>
+                                        <constraint firstItem="XWz-QW-jI1" firstAttribute="top" secondItem="xRt-K3-g7f" secondAttribute="topMargin" constant="9" id="lKE-M0-21K"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -323,7 +323,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGc-2T-t9t" id="eHf-4u-zw0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR9-FU-mRd">
