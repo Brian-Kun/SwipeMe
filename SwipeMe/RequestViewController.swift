@@ -92,19 +92,20 @@ class RequestTableViewController: UITableViewController {
         cell.textLbl.attributedText = formattedString
         cell.userCommentLbl.text = requestUserComment
         
-        calculateTimeSinceMade(requestArray[indexPath.row].createdAt)
-    
-    
-            //Make user image
-            cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
-            cell.userImage.clipsToBounds = true
+       
+        cell.timeLbl.text = calculateTimeSinceMade(requestArray[indexPath.row].createdAt)
 
-            let photoUrl = NSURL(string: requestUserPhotoUrl)
-            cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+    
+        //Make user image
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
+        cell.userImage.clipsToBounds = true
+
+        let photoUrl = NSURL(string: requestUserPhotoUrl)
+        cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
             
             
-            cell.layoutMargins = UIEdgeInsetsZero;
-            cell.preservesSuperviewLayoutMargins = false
+        cell.layoutMargins = UIEdgeInsetsZero;
+        cell.preservesSuperviewLayoutMargins = false
         
         return cell
     }
@@ -122,7 +123,6 @@ class RequestTableViewController: UITableViewController {
         // creates a reference in the databases to a set of requests ordered by the time it was created and picks the set of requests created at the time specified at the parameter of the method
         let ref = FIRDatabase.database().reference().child("Requests").queryOrderedByChild("Created_At").queryEqualToValue(time)
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print(snapshot.childrenCount) //look at the set of requests in the snapshot data type
             let enumerator = snapshot.children //transfer the set of requests into an array
             //iterate through the array of requests
             while let rest = enumerator.nextObject() as? FIRDataSnapshot {
@@ -159,9 +159,12 @@ class RequestTableViewController: UITableViewController {
     
     
     func currentDate() -> String{
-        let dateformatter = NSDateFormatter()
-        dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        return dateformatter.stringFromDate(NSDate())
+        //Calculate current time in format MM/dd/yy, HH:mm for example: 08/24/16, 10:10
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        return formatter.stringFromDate(today)
+
     }
     
     //Created a post in the feed database
@@ -227,38 +230,40 @@ class RequestTableViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func calculateTimeSinceMade(requestTime:String){
+    func calculateTimeSinceMade(requestTime:String) -> String{
         
-        //create an empty variable
-        var formattedRequestTime = ""
+        //Since parse is alittle bitch, we need to grab the date from the database and put it in 24hr format
+        let dateFormatter1 = NSDateFormatter()
+        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+        let date = dateFormatter1.dateFromString(requestTime)
+        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+        let date24 = dateFormatter1.stringFromDate(date!)
         
-        //Get rid of the AM/PM in he string
-        if requestTime.rangeOfString("AM") != nil{
-            formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("AM", withString: "")
-        }else{
-            formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("PM", withString: "")
-        }
         
-        //Calculate current time in format MM/dd/yy, HH:mm for example: 08/24/16, 10:10
+        //Create a time object of the current date
         let today = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/yy, HH:mm"
         let currentFormattedTime = formatter.stringFromDate(today)
         
-        //Calculate time of post based on the sring that was passed as aparameter
+        //Create a time object for the current time
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
+        let dateAsString = date24
         
-        //Create Time objects from the current time and the requestTime
-        let postTime = dateFormatter.dateFromString(formattedRequestTime)
+        //Assign both variable with nice names
+        let postTime = dateFormatter.dateFromString(dateAsString)
         let currentTime = dateFormatter.dateFromString(currentFormattedTime)
         
-        //Perform calculation of timeSinceMade and as an integer
-        let timeSincePost = Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
         
-        //TODO: Make this method return something, maybe a String? Int?
+        //Compare the time of both posts and the results is divided by 60, so the result is in minutes
+        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
         
-        print("Time since post \(timeSincePost) minutes")
+        if(timeSincePost < 60){
+            return ("\(Int(timeSincePost))m")
+        }else{
+            return ("\(Int(timeSincePost/60))h")
+        }
         
     }
     

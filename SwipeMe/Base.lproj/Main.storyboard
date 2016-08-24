@@ -345,20 +345,38 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="Zjj-SJ-2SN">
+                                            <rect key="frame" x="577" y="49" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="06V-Pb-YQM"/>
+                                                <constraint firstAttribute="width" constant="15" id="frr-YB-jvj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wh4-R4-FUg">
+                                            <rect key="frame" x="557" y="49" width="15" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="topMargin" secondItem="sR9-FU-mRd" secondAttribute="top" id="3ji-Xn-TEo"/>
                                         <constraint firstItem="unZ-yD-cdo" firstAttribute="centerY" secondItem="eHf-4u-zw0" secondAttribute="centerY" id="6ef-Rj-Ndn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Zjj-SJ-2SN" secondAttribute="bottom" id="97V-YK-aQg"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="aA4-CL-LFg" secondAttribute="trailing" id="AuD-UT-41B"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Zjj-SJ-2SN" secondAttribute="trailing" id="CUi-eT-RXF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="sR9-FU-mRd" secondAttribute="trailing" id="Cin-9O-cTJ"/>
+                                        <constraint firstItem="Zjj-SJ-2SN" firstAttribute="leading" secondItem="Wh4-R4-FUg" secondAttribute="trailing" constant="5" id="GyQ-04-S8Y"/>
                                         <constraint firstItem="aA4-CL-LFg" firstAttribute="top" secondItem="sR9-FU-mRd" secondAttribute="bottom" constant="8" id="Kkb-Ca-Sp2"/>
                                         <constraint firstItem="sR9-FU-mRd" firstAttribute="leading" secondItem="unZ-yD-cdo" secondAttribute="trailing" constant="13" id="aqZ-6y-IDU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Wh4-R4-FUg" secondAttribute="bottom" id="cwQ-IY-ah3"/>
                                         <constraint firstItem="aA4-CL-LFg" firstAttribute="leading" secondItem="unZ-yD-cdo" secondAttribute="trailing" constant="13" id="d4P-91-EUx"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="unZ-yD-cdo" secondAttribute="leading" constant="-10" id="ymP-To-lkq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="textLbl" destination="sR9-FU-mRd" id="wRQ-yG-Rbs"/>
+                                    <outlet property="timeLbl" destination="Wh4-R4-FUg" id="nro-sV-N7p"/>
                                     <outlet property="userCommentLbl" destination="aA4-CL-LFg" id="QWe-h3-Eql"/>
                                     <outlet property="userImage" destination="unZ-yD-cdo" id="4kC-Jz-PPk"/>
                                 </connections>
@@ -595,5 +613,6 @@
         <image name="googleSignIn" width="189" height="46"/>
         <image name="profile" width="23" height="30"/>
         <image name="request" width="31" height="30"/>
+        <image name="time" width="15" height="15"/>
     </resources>
 </document>

@@ -13,4 +13,5 @@ class RequestCell: UITableViewCell {
     @IBOutlet weak var textLbl: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userCommentLbl: UILabel!
+    @IBOutlet weak var timeLbl: UILabel!
 }
