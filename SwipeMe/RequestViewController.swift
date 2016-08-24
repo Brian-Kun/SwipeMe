@@ -229,32 +229,36 @@ class RequestTableViewController: UITableViewController {
     
     func calculateTimeSinceMade(requestTime:String){
         
+        //create an empty variable
         var formattedRequestTime = ""
         
+        //Get rid of the AM/PM in he string
         if requestTime.rangeOfString("AM") != nil{
             formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("AM", withString: "")
         }else{
             formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("PM", withString: "")
         }
         
+        //Calculate current time in format MM/dd/yy, HH:mm for example: 08/24/16, 10:10
         let today = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/yy, HH:mm"
         let currentFormattedTime = formatter.stringFromDate(today)
         
-        
-        
-        
+        //Calculate time of post based on the sring that was passed as aparameter
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
-        let dateAsString = formattedRequestTime
-        let postTime = dateFormatter.dateFromString(dateAsString)
+        
+        //Create Time objects from the current time and the requestTime
+        let postTime = dateFormatter.dateFromString(formattedRequestTime)
         let currentTime = dateFormatter.dateFromString(currentFormattedTime)
         
+        //Perform calculation of timeSinceMade and as an integer
+        let timeSincePost = Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
         
-        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
+        //TODO: Make this method return something, maybe a String? Int?
         
-        print("Time since post \(timeSincePost)")
+        print("Time since post \(timeSincePost) minutes")
         
     }
     
@@ -276,14 +280,4 @@ extension NSMutableAttributedString {
         return self
     }
 }
-
-
-extension String
-{
-    func replace(target: String, withString: String) -> String
-    {
-        return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
-    }
-}
-
 
