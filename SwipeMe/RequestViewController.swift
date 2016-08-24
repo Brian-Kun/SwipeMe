@@ -91,6 +91,8 @@ class RequestTableViewController: UITableViewController {
         formattedString.bold("\(firstName)").normal(" needs a swipe at ").bold("\(requestLocation)")
         cell.textLbl.attributedText = formattedString
         cell.userCommentLbl.text = requestUserComment
+        
+        calculateTimeSinceMade(requestArray[indexPath.row].createdAt)
     
     
             //Make user image
@@ -158,8 +160,7 @@ class RequestTableViewController: UITableViewController {
     
     func currentDate() -> String{
         let dateformatter = NSDateFormatter()
-        dateformatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        dateformatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         return dateformatter.stringFromDate(NSDate())
     }
     
@@ -174,7 +175,7 @@ class RequestTableViewController: UITableViewController {
                                                    "requestUserPhotoUrl" : requestUserPhotoUrl,
                                                    "postUserUID" : user.uid,
                                                    "postUserDisplayName": user.displayName!,
-                                                   "createdAt":currentDate(),
+                                                   "createdAt": currentDate(),
                                                    "postUserPhotoUrl":String(user.photoURL!)]
             let databaseRef = FIRDatabase.database().reference()
             databaseRef.child("Feed Posts").childByAutoId().setValue(feedPost)
@@ -226,6 +227,37 @@ class RequestTableViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func calculateTimeSinceMade(requestTime:String){
+        
+        var formattedRequestTime = ""
+        
+        if requestTime.rangeOfString("AM") != nil{
+            formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("AM", withString: "")
+        }else{
+            formattedRequestTime = requestTime.stringByReplacingOccurrencesOfString("PM", withString: "")
+        }
+        
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        let currentFormattedTime = formatter.stringFromDate(today)
+        
+        
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
+        let dateAsString = formattedRequestTime
+        let postTime = dateFormatter.dateFromString(dateAsString)
+        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        
+        
+        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
+        
+        print("Time since post \(timeSincePost)")
+        
+    }
+    
    
     
 }
@@ -244,4 +276,14 @@ extension NSMutableAttributedString {
         return self
     }
 }
+
+
+extension String
+{
+    func replace(target: String, withString: String) -> String
+    {
+        return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+}
+
 
