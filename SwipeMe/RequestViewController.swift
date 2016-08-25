@@ -285,14 +285,20 @@ class RequestTableViewController: UITableViewController {
     }
     
     func calculateTimeSinceMade(requestTime:String) -> String{
+        var date24 = ""
         
-        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-        let dateFormatter1 = NSDateFormatter()
-        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-        let date = dateFormatter1.dateFromString(requestTime)
-        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-        let date24 = dateFormatter1.stringFromDate(date!)
-        
+        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
+            
+            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
+            let dateFormatter1 = NSDateFormatter()
+            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+            let date = dateFormatter1.dateFromString(requestTime)
+            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+            date24 = dateFormatter1.stringFromDate(date!)
+            
+        }else{
+            date24 = requestTime
+        }
         
         //Create a time object of the current date
         let today = NSDate()
@@ -323,13 +329,22 @@ class RequestTableViewController: UITableViewController {
     
     func calculateTimeSinceRequestWasMadeInMinutes(requestTime:String) -> Int{
         
+        var date24 = ""
+        
+        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
+            
         //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
         let dateFormatter1 = NSDateFormatter()
         dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
         let date = dateFormatter1.dateFromString(requestTime)
         dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-        let date24 = dateFormatter1.stringFromDate(date!)
+        date24 = dateFormatter1.stringFromDate(date!)
+            
+        }else{
+            date24 = requestTime
+        }
         
+       
         
         //Create a time object of the current date
         let today = NSDate()

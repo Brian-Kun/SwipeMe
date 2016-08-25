@@ -96,10 +96,12 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     
     
     func currentDate() -> String{
-        let dateformatter = NSDateFormatter()
-        dateformatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        dateformatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        return dateformatter.stringFromDate(NSDate())
+        //Calculate current time in format MM/dd/yy, HH:mm for example: 08/24/16, 10:10
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        return formatter.stringFromDate(today)
+        
     }
     
     @IBAction func submitBtnPressed(sender: UIButton) {

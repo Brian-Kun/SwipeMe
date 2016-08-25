@@ -110,7 +110,6 @@ class FeedTableViewController: UITableViewController {
         
         let requestUserPhotoUrl = NSURL(string : feedPostArray[indexPath.row].requestUserPhotoUrl)
         cell.requestUserImage.image = UIImage(data : (NSData(contentsOfURL: requestUserPhotoUrl!))!)
-        
         cell.timeLbl.text = calculateTimeSinceMade(feedPostArray[indexPath.row].createdAt)
         
         
@@ -141,12 +140,20 @@ class FeedTableViewController: UITableViewController {
     
     func timeSincePostWasMade(requestTime:String) -> Int{
         
-        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-        let dateFormatter1 = NSDateFormatter()
-        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-        let date = dateFormatter1.dateFromString(requestTime)
-        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-        let date24 = dateFormatter1.stringFromDate(date!)
+        var date24 = ""
+        
+        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
+            
+            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
+            let dateFormatter1 = NSDateFormatter()
+            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+            let date = dateFormatter1.dateFromString(requestTime)
+            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+            date24 = dateFormatter1.stringFromDate(date!)
+            
+        }else{
+            date24 = requestTime
+        }
         
         
         //Create a time object of the current date
@@ -175,7 +182,7 @@ class FeedTableViewController: UITableViewController {
     func feedPostIsOld(requestCreatedAt:String)-> Bool{
         
         let exceeded = timeSincePostWasMade(requestCreatedAt)
-        if  exceeded >= 15{
+        if  exceeded >= 60{
             return true
         }
         return false
@@ -183,12 +190,20 @@ class FeedTableViewController: UITableViewController {
     
     func calculateTimeSinceMade(requestTime:String) -> String{
         
-        //Since parse is alittle bitch, we need to grab the date from the database and put it in 24hr format
-        let dateFormatter1 = NSDateFormatter()
-        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-        let date = dateFormatter1.dateFromString(requestTime)
-        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-        let date24 = dateFormatter1.stringFromDate(date!)
+        var date24 = ""
+        
+        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
+            
+            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
+            let dateFormatter1 = NSDateFormatter()
+            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+            let date = dateFormatter1.dateFromString(requestTime)
+            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+            date24 = dateFormatter1.stringFromDate(date!)
+            
+        }else{
+            date24 = requestTime
+        }
         
         
         //Create a time object of the current date
