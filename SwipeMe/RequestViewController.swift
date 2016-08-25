@@ -16,10 +16,16 @@ class RequestTableViewController: UITableViewController {
     
     var requestArray = [Request]()
     
-      let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
+    let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        
+        self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         
         //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
         tableView.backgroundColor = UIColor.clearColor()
@@ -61,7 +67,7 @@ class RequestTableViewController: UITableViewController {
             let comment = snapshot.value!["comment"] as! String
             let childAutoID = snapshot.key
             
-            if self.deleteUnansweredRequests(createdAt) {
+            if self.requestIsOld(createdAt) {
                 self.deleteRequestWithRequestID(childAutoID)
             } else{
             self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, comment: comment,requestID: childAutoID), atIndex: 0)
@@ -91,6 +97,16 @@ class RequestTableViewController: UITableViewController {
       
     }//end of viewDidLoad()
     
+    func refreshTable(){
+        for request in requestArray{
+            if(requestIsOld(request.createdAt)){
+                self.deleteRequestWithRequestID(request.requestID)
+            }
+        }
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
     
     //The number of rows in the section is the number of elements in the array
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,6 +116,12 @@ class RequestTableViewController: UITableViewController {
             tableView.backgroundColor = UIColor.whiteColor()
             tableView.separatorColor = UIColor.lightGrayColor()
             noReuqestImageView.hidden = true
+        }else{
+            tableView.backgroundColor = UIColor.clearColor()
+            tableView.separatorColor = UIColor.clearColor()
+            noReuqestImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+            view.addSubview(noReuqestImageView)
+            noReuqestImageView.hidden = false
         }
         return requestArray.count
     }
@@ -332,7 +354,7 @@ class RequestTableViewController: UITableViewController {
         
     }
     
-    func deleteUnansweredRequests(requestCreatedAt:String)-> Bool{
+    func requestIsOld(requestCreatedAt:String)-> Bool{
         
         let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
             if  exceeded >= 15{

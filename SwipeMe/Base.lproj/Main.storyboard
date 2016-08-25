@@ -326,6 +326,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="9t9-ac-VRz"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="o96-vd-Vcx">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWb-H7-caN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -410,6 +413,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="tPt-be-vvs"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="LIl-vp-PSy">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sBP-QA-d7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

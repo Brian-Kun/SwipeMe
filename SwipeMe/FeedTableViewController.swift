@@ -12,15 +12,21 @@ import FirebaseDatabase
 import JSSAlertView
 
 class FeedTableViewController: UITableViewController {
+    
     var feedPostArray = [FeedPost]()
     
-     let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
+    let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
+        
+        self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
+
+        
         //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.lightGrayColor()
         tableView.separatorColor = UIColor.clearColor()
         noFeedActivityImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         view.addSubview(noFeedActivityImageView)
@@ -43,8 +49,9 @@ class FeedTableViewController: UITableViewController {
             let requestUserDisplayName = snapshot.value!["requestUserDisplayName"] as! String
             let requestUserUID = snapshot.value!["requestUserUID"] as! String
             let requestPhotoUrl = snapshot.value!["requestUserPhotoUrl"] as! String
+            let postID = snapshot.key
             
-            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt), atIndex: 0)
+            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
             self.tableView.reloadData()
             
             
@@ -52,12 +59,30 @@ class FeedTableViewController: UITableViewController {
         })
         
     }
+    
+    func refreshTable(){
+        for post in feedPostArray{
+            if(feedPostIsOld(post.createdAt)){
+                self.deletePostWithID(post.postID)
+            }
+        }
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //Check if there are any requests, if there are, display the tableView and hide the noRequestImageView
         if(feedPostArray.count != 0){
             tableView.backgroundColor = UIColor.whiteColor()
             tableView.separatorColor = UIColor.lightGrayColor()
             noFeedActivityImageView.hidden = true
+        }else{
+            //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
+            tableView.backgroundColor = UIColor.lightGrayColor()
+            tableView.separatorColor = UIColor.clearColor()
+            noFeedActivityImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+            view.addSubview(noFeedActivityImageView)
+            noFeedActivityImageView.hidden = false
         }
         return feedPostArray.count
     }
@@ -93,6 +118,67 @@ class FeedTableViewController: UITableViewController {
         cell.preservesSuperviewLayoutMargins = false
         return cell
         
+    }
+    
+    //method to delete requests based on the request ID
+    func deletePostWithID(postId : String!){
+        let ref = FIRDatabase.database().reference().child("Feed Posts").queryOrderedByKey().queryEqualToValue(postId)
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let enumerator = snapshot.children //transfer the set of requests into an array
+            //iterate through the array of requests
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+                //get a root reference to a request
+                let ref =  FIRDatabase.database().reference().child("Feed Posts")
+                //get the key reference to specify the request
+                let nodeToRemove = ref.child(rest.key)
+                //remove the request from Firebase
+                nodeToRemove.removeValue()
+                
+            }
+        })
+        
+    }
+    
+    func timeSincePostWasMade(requestTime:String) -> Int{
+        
+        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
+        let dateFormatter1 = NSDateFormatter()
+        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+        let date = dateFormatter1.dateFromString(requestTime)
+        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+        let date24 = dateFormatter1.stringFromDate(date!)
+        
+        
+        //Create a time object of the current date
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        let currentFormattedTime = formatter.stringFromDate(today)
+        
+        //Create a time object for the current time
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
+        let dateAsString = date24
+        
+        //Assign both variable with nice names
+        let postTime = dateFormatter.dateFromString(dateAsString)
+        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        
+        
+        //Compare the time of both posts and the results is divided by 60, so the result is in minutes
+        return Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
+        
+        
+        
+    }
+    
+    func feedPostIsOld(requestCreatedAt:String)-> Bool{
+        
+        let exceeded = timeSincePostWasMade(requestCreatedAt)
+        if  exceeded >= 15{
+            return true
+        }
+        return false
     }
     
     func calculateTimeSinceMade(requestTime:String) -> String{

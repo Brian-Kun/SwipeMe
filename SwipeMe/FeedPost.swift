@@ -18,6 +18,7 @@ struct FeedPost {
     let postUserDisplayName:String!
     let postUserPhotoURL: String!
     let createdAt:String!
+    let postID:String!
     
     
     
