@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import XLActionController
+import JSSAlertView
 
 class RequestMakerViewController: UIViewController,UITextViewDelegate {
 
@@ -26,6 +27,11 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
         
         textView.delegate = self
         
@@ -139,6 +145,17 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
                 actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
                 }))
                 presentViewController(actionController, animated: true, completion: nil)
+    }
+    
+    func displayNoInternetAlert(){
+        let alertView = JSSAlertView().show(
+            self,
+            title: "Oh 💩...",
+            text: "Looks like there is no internet. Connect to a network and relauch the app.",
+            buttonText: "FML😫 Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "noInternet"))
+        alertView.setTextTheme(.Light)
     }
 
 

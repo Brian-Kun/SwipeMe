@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import JSSAlertView
 
 
 class PhoneNumberViewController: UIViewController {
@@ -22,6 +23,10 @@ class PhoneNumberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Make user image round
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
+        self.userImage.clipsToBounds = true
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhoneNumberViewController.dismissKeyboard))
         
@@ -53,10 +58,10 @@ class PhoneNumberViewController: UIViewController {
         getPhoneNumber(user?.uid)
         
         if(phoneTextField.text?.characters.count == 0){
-            displayAlert("Quick Thing...", message: "You forgot to input your phone number")
+            displayAlert("Quick Thing...", message: "You forgot to input your phone number. We need your phone number to help you contact those that want a meal swipe.")
         }
         else if(phoneTextField.text?.characters.count != 10){
-            displayAlert("Hey There!", message: "Phone number is not 10 characters")
+            displayAlert("😅😅😅", message: "Hey! It looks like that phone number is not valid. Remember just input the phone number without spaces dashes, or country code.")
 
         }
         else{
@@ -105,15 +110,29 @@ class PhoneNumberViewController: UIViewController {
     
     
     func displayAlert(title:String, message: String){
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let alertView = JSSAlertView().show(
+            self,
+            title: title,
+            text: message,
+            buttonText: "Okay",
+            color: UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0),
+            iconImage: UIImage(named: "phoneNumber"))
+        alertView.setTextTheme(.Light)
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func displayNoInternetAlert(){
+        let alertView = JSSAlertView().show(
+            self,
+            title: "Oh 💩...",
+            text: "Looks like there is no internet. Connect to a network and relauch the app.",
+            buttonText: "FML😫 Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "noInternet"))
+        alertView.setTextTheme(.Light)
     }
     
 

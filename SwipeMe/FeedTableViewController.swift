@@ -9,12 +9,28 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import JSSAlertView
 
 class FeedTableViewController: UITableViewController {
     var feedPostArray = [FeedPost]()
+    
+     let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clearColor()
+        noFeedActivityImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+        view.addSubview(noFeedActivityImageView)
+        noFeedActivityImageView.hidden = false
+        
+        
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
+        
         self.title = "Feed"
         let databaseRef =  FIRDatabase.database().reference()
         databaseRef.child("Feed Posts").queryOrderedByKey().observeEventType(.ChildAdded, withBlock:{
@@ -37,6 +53,12 @@ class FeedTableViewController: UITableViewController {
         
     }
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //Check if there are any requests, if there are, display the tableView and hide the noRequestImageView
+        if(feedPostArray.count != 0){
+            tableView.backgroundColor = UIColor.whiteColor()
+            tableView.separatorColor = UIColor.lightGrayColor()
+            noFeedActivityImageView.hidden = true
+        }
         return feedPostArray.count
     }
   
@@ -109,6 +131,19 @@ class FeedTableViewController: UITableViewController {
         }
         
     }
+    
+    func displayNoInternetAlert(){
+        let alertView = JSSAlertView().show(
+            self,
+            title: "Oh 💩...",
+            text: "Looks like there is no internet. Connect to a network and relauch the app.",
+            buttonText: "FML😫 Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "noInternet"))
+        alertView.setTextTheme(.Light)
+    }
+    
+    
 
 
 }

@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>JSSAlertView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>Pods-SwipeMe.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +43,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0EB19C1377A747F81110D44E2D5FCF78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21ECA19EB36D17ADD50282828FAA9D71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6BD2C75B17C5E6B448A96CE7EC5E71CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6EDC37F3FA92533C6AC3562458AA91F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72D57DED5129BDCAEB112D61B15B08A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

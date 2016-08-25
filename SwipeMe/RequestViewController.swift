@@ -10,14 +10,29 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import XLActionController
+import JSSAlertView
 
 class RequestTableViewController: UITableViewController {
     
     var requestArray = [Request]()
+    
+      let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clearColor()
+        noReuqestImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+        view.addSubview(noReuqestImageView)
+        noReuqestImageView.hidden = false
+        
+        
+        
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
         
         //Navigation controller title
         self.title = "Meal Requests"
@@ -72,12 +87,20 @@ class RequestTableViewController: UITableViewController {
             }
         })
         
+        
       
-           }//end of viewDidLoad()
+    }//end of viewDidLoad()
     
     
     //The number of rows in the section is the number of elements in the array
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //Check if there are any requests, if there are, display the tableView and hide the noRequestImageView
+        if(requestArray.count != 0){
+            tableView.backgroundColor = UIColor.whiteColor()
+            tableView.separatorColor = UIColor.lightGrayColor()
+            noReuqestImageView.hidden = true
+        }
         return requestArray.count
     }
     
@@ -113,6 +136,8 @@ class RequestTableViewController: UITableViewController {
             
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
+        
+        
         
         return cell
     }
@@ -309,14 +334,22 @@ class RequestTableViewController: UITableViewController {
     
     func deleteUnansweredRequests(requestCreatedAt:String)-> Bool{
         
-    let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
-            print(exceeded)
+        let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
             if  exceeded >= 15{
-    
                 return true
             }
-        
         return false
+    }
+    
+    func displayNoInternetAlert(){
+        let alertView = JSSAlertView().show(
+            self,
+            title: "Oh 💩...",
+            text: "Looks like there is no internet. Connect to a network and relauch the app.",
+            buttonText: "FML😫 Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "noInternet"))
+        alertView.setTextTheme(.Light)
     }
     
     
