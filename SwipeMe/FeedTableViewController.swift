@@ -64,12 +64,51 @@ class FeedTableViewController: UITableViewController {
         let requestUserPhotoUrl = NSURL(string : feedPostArray[indexPath.row].requestUserPhotoUrl)
         cell.requestUserImage.image = UIImage(data : (NSData(contentsOfURL: requestUserPhotoUrl!))!)
         
-
+        cell.timeLbl.text = calculateTimeSinceMade(feedPostArray[indexPath.row].createdAt)
+        
         
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
         return cell
         
     }
+    
+    func calculateTimeSinceMade(requestTime:String) -> String{
+        
+        //Since parse is alittle bitch, we need to grab the date from the database and put it in 24hr format
+        let dateFormatter1 = NSDateFormatter()
+        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+        let date = dateFormatter1.dateFromString(requestTime)
+        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+        let date24 = dateFormatter1.stringFromDate(date!)
+        
+        
+        //Create a time object of the current date
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        let currentFormattedTime = formatter.stringFromDate(today)
+        
+        //Create a time object for the current time
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
+        let dateAsString = date24
+        
+        //Assign both variable with nice names
+        let postTime = dateFormatter.dateFromString(dateAsString)
+        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        
+        
+        //Compare the time of both posts and the results is divided by 60, so the result is in minutes
+        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
+        
+        if(timeSincePost < 60){
+            return ("\(Int(timeSincePost))m")
+        }else{
+            return ("\(Int(timeSincePost/60))h")
+        }
+        
+    }
+
 
 }

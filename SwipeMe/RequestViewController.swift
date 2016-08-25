@@ -232,7 +232,7 @@ class RequestTableViewController: UITableViewController {
     
     func calculateTimeSinceMade(requestTime:String) -> String{
         
-        //Since parse is alittle bitch, we need to grab the date from the database and put it in 24hr format
+        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
         let dateFormatter1 = NSDateFormatter()
         dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
         let date = dateFormatter1.dateFromString(requestTime)

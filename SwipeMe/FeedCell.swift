@@ -17,4 +17,5 @@ class FeedCell: UITableViewCell {
    
     @IBOutlet weak var swipeGivenLabel: UILabel!
 
+    @IBOutlet weak var timeLbl: UILabel!
 }
