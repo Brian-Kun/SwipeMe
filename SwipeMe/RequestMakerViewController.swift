@@ -55,6 +55,12 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
         }
     }
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        characterCounterLbl.text = "\(numberOfChars)/40"
+        return numberOfChars < 40;
+    }
     
     func hidePlaceHolder(){
         textView.removeGestureRecognizer(textViewGestureRecognizer)
