@@ -29,8 +29,8 @@ class RequestTableViewController: UITableViewController {
         let font = UIFont.boldSystemFontOfSize(CGFloat(size))
         let attributes = [NSFontAttributeName: font]
         navigationItem.rightBarButtonItem?.setTitleTextAttributes(attributes, forState: .Normal)
-        
-        
+      
+
         //Pulls data from database and updates it by adding it to the requestArray
         let databaseRef = FIRDatabase.database().reference()
         
@@ -45,8 +45,13 @@ class RequestTableViewController: UITableViewController {
             let photoURL = snapshot.value!["userPhotoURL"] as! String
             let comment = snapshot.value!["comment"] as! String
             let childAutoID = snapshot.key
-
+            
+            if self.deleteUnansweredRequests(createdAt) {
+                self.deleteRequestWithRequestID(childAutoID)
+            } else{
             self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, comment: comment,requestID: childAutoID), atIndex: 0)
+            }
+           
             self.tableView.reloadData()
         })
         
@@ -66,8 +71,9 @@ class RequestTableViewController: UITableViewController {
                 }
             }
         })
-
-    }//end of viewDidLoad()
+        
+      
+           }//end of viewDidLoad()
     
     
     //The number of rows in the section is the number of elements in the array
@@ -77,6 +83,7 @@ class RequestTableViewController: UITableViewController {
     
     //Display the array of requests in the tableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("requestCell") as! RequestCell
         
         let requestUser = requestArray[indexPath.row].displayName
@@ -267,9 +274,58 @@ class RequestTableViewController: UITableViewController {
         
     }
     
+    func calculateTimeSinceRequestWasMadeInMinutes(requestTime:String) -> Int{
+        
+        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
+        let dateFormatter1 = NSDateFormatter()
+        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
+        let date = dateFormatter1.dateFromString(requestTime)
+        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
+        let date24 = dateFormatter1.stringFromDate(date!)
+        
+        
+        //Create a time object of the current date
+        let today = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm"
+        let currentFormattedTime = formatter.stringFromDate(today)
+        
+        //Create a time object for the current time
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
+        let dateAsString = date24
+        
+        //Assign both variable with nice names
+        let postTime = dateFormatter.dateFromString(dateAsString)
+        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        
+        
+        //Compare the time of both posts and the results is divided by 60, so the result is in minutes
+        return Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
+        
+        
+        
+    }
+    
+    func deleteUnansweredRequests(requestCreatedAt:String)-> Bool{
+        
+    let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
+            print(exceeded)
+            if  exceeded >= 15{
+    
+                return true
+            }
+        
+        return false
+    }
+    
+    
+    
+    
    
     
 }
+
 
 extension NSMutableAttributedString {
     func bold(text:String) -> NSMutableAttributedString {
