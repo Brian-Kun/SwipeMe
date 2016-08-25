@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>JSSAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SwipeMe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4F7B5CE23A4F0D75C7A85309036B5C58</key>
+		<key>21ECA19EB36D17ADD50282828FAA9D71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55F7BFA75D93EAE660B120AC3CC7A428</key>
+		<key>6BD2C75B17C5E6B448A96CE7EC5E71CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72D57DED5129BDCAEB112D61B15B08A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

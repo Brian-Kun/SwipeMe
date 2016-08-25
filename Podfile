@@ -18,6 +18,8 @@ target 'SwipeMe' do
   pod 'XLActionController'
   
   pod 'XLActionController/Periscope'
+  
+  pod 'JSSAlertView'
 
 
 end
