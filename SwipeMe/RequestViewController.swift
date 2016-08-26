@@ -35,7 +35,7 @@ class RequestTableViewController: UITableViewController {
         noReuqestImageView.hidden = false
         
         
-               
+        
         //Navigation controller title
         self.title = "Meal Requests"
         

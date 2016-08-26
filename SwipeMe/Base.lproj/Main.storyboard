@@ -30,23 +30,16 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3pw-J5-NAD">
-                                <rect key="frame" x="290" y="381" width="20" height="20"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="top" secondItem="Pak-QY-Oay" secondAttribute="bottom" constant="98" id="1mw-i8-gwB"/>
-                            <constraint firstItem="3pw-J5-NAD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LQT-tC-7Zq"/>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d1n-4S-QVN"/>
-                            <constraint firstItem="3pw-J5-NAD" firstAttribute="top" secondItem="8pv-dG-SFs" secondAttribute="bottom" constant="58" id="q4o-Jg-SOe"/>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ude-ux-oox"/>
                             <constraint firstItem="Pak-QY-Oay" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ytc-kc-L1O"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loginIndicator" destination="3pw-J5-NAD" id="3q1-3V-1Pg"/>
                         <segue destination="DoV-ey-aiS" kind="show" identifier="userLoggedInSegue" id="jDk-F8-R9o"/>
                     </connections>
                 </viewController>
@@ -260,7 +253,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-fB-UNI" id="xRt-K3-g7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
@@ -348,7 +341,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGc-2T-t9t" id="eHf-4u-zw0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-yD-cdo">

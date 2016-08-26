@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import JSSAlertView
+import SwiftSpinner
 
 
 class PhoneNumberViewController: UIViewController {
@@ -32,10 +33,11 @@ class PhoneNumberViewController: UIViewController {
         
         view.addGestureRecognizer(tap)
         
-        getPhoneNumber(user?.uid)
         
         //Check if user is logged in. (Migth remove )
         if let user = FIRAuth.auth()?.currentUser {
+            SwiftSpinner.show("Loading information")
+            getPhoneNumber(user.uid)
         
             //fetch for user image,name,email, and uid
             let name = user.displayName
@@ -103,7 +105,7 @@ class PhoneNumberViewController: UIViewController {
                 }
             }
         })
-        
+        SwiftSpinner.hide()
         return result
         
     }

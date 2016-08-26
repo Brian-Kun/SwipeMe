@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import SwiftSpinner
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
@@ -43,8 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     //Google sign in setup
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
+        SwiftSpinner.show("Signing In..")
             if let error = error {
-                print("Google sign in error, check app delegate -Brian")
+                 SwiftSpinner.show("Failed to sign in. Try again later.", animated: false)
                 print(error.localizedDescription)
                 return
             }
@@ -54,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
            
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                print("Succesfull log in!")
+                 SwiftSpinner.hide()
             }
     }
     
