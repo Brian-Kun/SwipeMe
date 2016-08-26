@@ -29,10 +29,6 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
         super.viewDidLoad()
         
         
-        if(!Reachability.isConnectedToNetwork()){
-            displayNoInternetAlert()
-        }
-        
         textView.delegate = self
         
         characterCounterLbl.text = "0/40"

@@ -32,9 +32,7 @@ class ProfileViewController: UIViewController {
             privacySwitch.setOn(true, animated: false)
         }
         
-        if(!Reachability.isConnectedToNetwork()){
-            displayNoInternetAlert()
-        }
+        
         
         self.title = "Profile"
         

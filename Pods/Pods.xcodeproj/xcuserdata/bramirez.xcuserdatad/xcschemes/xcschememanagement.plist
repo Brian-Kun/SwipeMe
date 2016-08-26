@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>SwiftSpinner.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>XLActionController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -53,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>30D7FCF8072F5D59AE1C98D94F9A6EC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37D6EF9A584B94A76357278EC7A5179D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7CA93214142E46B56276CB33002CDC54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DEC7B8B7FD4E744CC1FABF28AE2E5A5C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9789810060C5B6BF0D61BBCECF3E481</key>
 		<dict>
 			<key>primary</key>
 			<true/>

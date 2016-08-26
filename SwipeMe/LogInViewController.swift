@@ -21,7 +21,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(Reachability.isConnectedToNetwork()){
+    
             
             //Firebase Login setup
             GIDSignIn.sharedInstance().uiDelegate = self
@@ -36,29 +36,22 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
                 } 
             }
             
-        }else{
-            displayNoInternetAlert()
-        }
-        
+       
         
     }//End of viewDidLoad()
     
     override func viewDidAppear(animated: Bool) {
-        if(!Reachability.isConnectedToNetwork()){
-            displayNoInternetAlert()
-        }
+        
     }
     
     
 
     @IBAction func googleBtnPressed(sender: UIButton) {
-        if(Reachability.isConnectedToNetwork()){
+        
             loginIndicator.startAnimating()
             GIDSignIn.sharedInstance().uiDelegate = self
             GIDSignIn.sharedInstance().signIn();
-        }else{
-            displayNoInternetAlert()
-        }
+        
         
     }
     

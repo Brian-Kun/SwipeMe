@@ -32,10 +32,7 @@ class FeedTableViewController: UITableViewController {
         view.addSubview(noFeedActivityImageView)
         noFeedActivityImageView.hidden = false
         
-        
-        if(!Reachability.isConnectedToNetwork()){
-            displayNoInternetAlert()
-        }
+      
         
         self.title = "Feed"
         let databaseRef =  FIRDatabase.database().reference()

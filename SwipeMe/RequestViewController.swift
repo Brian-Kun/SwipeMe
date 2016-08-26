@@ -35,11 +35,7 @@ class RequestTableViewController: UITableViewController {
         noReuqestImageView.hidden = false
         
         
-        
-        if(!Reachability.isConnectedToNetwork()){
-            displayNoInternetAlert()
-        }
-        
+               
         //Navigation controller title
         self.title = "Meal Requests"
         
