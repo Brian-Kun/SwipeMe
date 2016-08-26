@@ -28,7 +28,7 @@ class RequestTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         
         //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.lightGrayColor()
         tableView.separatorColor = UIColor.clearColor()
         noReuqestImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         view.addSubview(noReuqestImageView)
@@ -117,7 +117,7 @@ class RequestTableViewController: UITableViewController {
             tableView.separatorColor = UIColor.lightGrayColor()
             noReuqestImageView.hidden = true
         }else{
-            tableView.backgroundColor = UIColor.clearColor()
+            tableView.backgroundColor = UIColor.lightGrayColor()
             tableView.separatorColor = UIColor.clearColor()
             noReuqestImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
             view.addSubview(noReuqestImageView)
@@ -250,6 +250,7 @@ class RequestTableViewController: UITableViewController {
                     let requestDisplaName = self.requestArray[indexPath.row].displayName
                     let requestLocation = self.requestArray[indexPath.row].location
                     let requestPhoto = self.requestArray[indexPath.row].userPhotoURL
+                    
                     self.createFeedPost(requestUserUID, requestUserDisplayName: requestDisplaName, requestLocation: requestLocation, requestUserPhotoUrl: requestPhoto)
                     
                     ///update answered variable on db to true
