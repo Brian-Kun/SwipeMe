@@ -23,7 +23,6 @@ target 'SwipeMe' do
   
   pod 'SwiftSpinner'
   
-  pod 'ReachabilitySwift'
 
 
 end

@@ -33,22 +33,27 @@ class PhoneNumberViewController: UIViewController {
         
         view.addGestureRecognizer(tap)
         
-        
-        //Check if user is logged in. (Migth remove )
-        if let user = FIRAuth.auth()?.currentUser {
-            SwiftSpinner.show("Loading information")
-            getPhoneNumber(user.uid)
-        
-            //fetch for user image,name,email, and uid
-            let name = user.displayName
-            let email = user.email
-            let photoUrl = user.photoURL
-        
-            //Display User info
-            nameLbl.text = name
-            emailLbl.text = email
-            userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+        if(Reachability.isConnectedToNetwork()){
+            //Check if user is logged in. (Migth remove )
+            if let user = FIRAuth.auth()?.currentUser {
+                SwiftSpinner.show("Loading information")
+                getPhoneNumber(user.uid)
+                
+                //fetch for user image,name,email, and uid
+                let name = user.displayName
+                let email = user.email
+                let photoUrl = user.photoURL
+                
+                //Display User info
+                nameLbl.text = name
+                emailLbl.text = email
+                userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+            }
+            
+        }else{
+            displayNoInternetAlert()
         }
+        
         
         
     }

@@ -20,13 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        if(Reachability.isConnectedToNetwork()){
+            
+            //Firebase app configuration
+            FIRApp.configure()
         
-        //Firebase app configuration
-        FIRApp.configure()
-        
-        //Google Sign in configuration
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+            //Google Sign in configuration
+            GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+            GIDSignIn.sharedInstance().delegate = self
+            
+        }
         
         //Make status bar pretty
         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -46,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     //Google sign in setup
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
-        SwiftSpinner.show("Signing In..")
+        SwiftSpinner.showWithDelay(2.0, title: "Signing In..")
             if let error = error {
                  SwiftSpinner.show("Failed to sign in. Try again later.", animated: false)
                 print(error.localizedDescription)
