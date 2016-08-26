@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 import JSSAlertView
+import SwiftSpinner
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate{
     

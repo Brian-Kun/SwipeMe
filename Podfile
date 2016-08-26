@@ -20,6 +20,8 @@ target 'SwipeMe' do
   pod 'XLActionController/Periscope'
   
   pod 'JSSAlertView'
+  
+  pod "SwiftSpinner"
 
 
 end
