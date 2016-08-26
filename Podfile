@@ -21,7 +21,9 @@ target 'SwipeMe' do
   
   pod 'JSSAlertView'
   
-  pod "SwiftSpinner"
+  pod 'SwiftSpinner'
+  
+  pod 'ReachabilitySwift'
 
 
 end

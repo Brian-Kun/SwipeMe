@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
         //Firebase app configuration
         FIRApp.configure()
         

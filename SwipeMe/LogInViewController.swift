@@ -15,11 +15,11 @@ import SwiftSpinner
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate{
     
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(Internet.isConnected()){
             //Firebase Login setup
             GIDSignIn.sharedInstance().uiDelegate = self
             
@@ -30,8 +30,11 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
                     //Once the state changes to logged in, it moves the user to the next screen
                     print("User \((user.displayName)!) is already signed in! Moving to next screen!")
                     self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
-                } 
+                }
             }
+        }else{
+            displayNoInternetAlert()
+        }
             
        
         
