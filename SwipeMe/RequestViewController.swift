@@ -239,15 +239,37 @@ class RequestTableViewController: UITableViewController {
         }
     }
     
+    func getAndDisplayPhoneNumber(userUID: String!, userName:String){
+        
+        let databaseReference =  FIRDatabase.database().reference().child("Phone Numbers").child(userUID)
+        // only need to fetch once so use single event
+        
+        databaseReference.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if !snapshot.exists() {
+                print ("Phone Number not found for this user id")
+                return
+            }
+            
+            if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
+                 self.displayrequestSuccessAlert(userName, requestPhoneNumber: phoneNumberValue)
+            }
+        })
+        
+    }
+
+    
     //Share a meaa swipe table view action
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let shareMealSwipe = UITableViewRowAction(style: .Normal, title: "Share Meal Swipe") { action, index in
             //Check if user is logged in. (Migth remove )
+            
             if let user = FIRAuth.auth()?.currentUser {
                 if(self.requestArray[indexPath.row].UID != user.uid){
                     let requestUserUID = self.requestArray[indexPath.row].UID
                     let requestID = self.requestArray[indexPath.row].requestID
                     let requestDisplaName = self.requestArray[indexPath.row].displayName
+                    self.getAndDisplayPhoneNumber(requestUserUID, userName: requestDisplaName)
                     let requestLocation = self.requestArray[indexPath.row].location
                     let requestPhoto = self.requestArray[indexPath.row].userPhotoURL
                     self.createFeedPost(requestUserUID, requestUserDisplayName: requestDisplaName, requestLocation: requestLocation, requestUserPhotoUrl: requestPhoto)
@@ -262,8 +284,9 @@ class RequestTableViewController: UITableViewController {
             }
         }
         shareMealSwipe.backgroundColor = UIColor(red: 60/255, green: 186/255, blue: 84/255, alpha: 1)
-    
+        
         return [shareMealSwipe]
+        
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -389,7 +412,15 @@ class RequestTableViewController: UITableViewController {
         alertView.setTextTheme(.Light)
     }
     
-    
+    func displayrequestSuccessAlert(requestUserName: String, requestPhoneNumber: String){
+        let alertView  = JSSAlertView().show( self,
+        title: "Request Match!",
+        text: "Help \(requestUserName) to get a swipe by texting \(requestPhoneNumber). Head over to your messages, we've started the conversation for you and be polite!",
+        buttonText: "Okay!",
+        color: UIColor(red:0, green: 1.0,blue:0, alpha: 1.0))
+        alertView.setTextTheme(.Light)
+        
+    }
     
     
    
