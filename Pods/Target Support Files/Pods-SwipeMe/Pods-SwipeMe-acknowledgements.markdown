@@ -17,9 +17,17 @@ Copyright 2016 Google
 
 Copyright 2016 Google
 
+## FirebaseDynamicLinks
+
+Copyright 2016 Google Inc.
+
 ## FirebaseInstanceID
 
 Copyright 2016 Google
+
+## FirebaseInvites
+
+Copyright 2016 Google Inc.
 
 ## FirebaseStorage
 
@@ -42,6 +50,10 @@ Copyright 2015 Google Inc.
 Copyright 2015 Google Inc.
 
 ## GoogleParsingUtilities
+
+Copyright 2015 Google Inc.
+
+## GooglePlusUtilities
 
 Copyright 2015 Google Inc.
 

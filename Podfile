@@ -23,6 +23,8 @@ target 'SwipeMe' do
   
   pod 'SwiftSpinner'
   
+  pod 'Firebase/Invites'
+  
 
 
 end

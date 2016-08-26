@@ -46,6 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
     }
     
+    
+    func application(application: UIApplication,
+                     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if let invite = FIRInvites.handleURL(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
+            let matchType =
+                (invite.matchType == FIRReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
+            print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
+                "Id: \(invite.inviteId), Type: \(matchType)")
+            return true
+        }
+        
+        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
     //Google sign in setup
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {

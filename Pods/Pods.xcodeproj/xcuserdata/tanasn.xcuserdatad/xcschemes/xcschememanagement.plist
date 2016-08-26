@@ -6,40 +6,28 @@
 	<dict>
 		<key>JSSAlertView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SwipeMe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>SwiftSpinner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>XLActionController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>21ECA19EB36D17ADD50282828FAA9D71</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F7B5CE23A4F0D75C7A85309036B5C58</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>55F7BFA75D93EAE660B120AC3CC7A428</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6BD2C75B17C5E6B448A96CE7EC5E71CA</key>
+		<key>37D6EF9A584B94A76357278EC7A5179D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -49,7 +37,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C051C95D6D4E45FAFEBE823BF3E3DF6B</key>
+		<key>7CA93214142E46B56276CB33002CDC54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9789810060C5B6BF0D61BBCECF3E481</key>
 		<dict>
 			<key>primary</key>
 			<true/>

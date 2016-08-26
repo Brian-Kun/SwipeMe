@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C0CBDD01D6BDCA700169139 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CBDCF1D6BDCA700169139 /* FeedCell.swift */; };
+		1C2F8E9C1D70DDDF00C64211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C2F8E9B1D70DDDF00C64211 /* GoogleService-Info.plist */; };
 		1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */; };
 		1C431D0E1D66A4E400736F70 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0D1D66A4E400736F70 /* RequestViewController.swift */; };
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
@@ -23,7 +24,6 @@
 		27A484BA1D650E4100B3C705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A484B81D650E4100B3C705 /* LaunchScreen.storyboard */; };
 		27A484C51D650E4100B3C705 /* SwipeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484C41D650E4100B3C705 /* SwipeMeTests.swift */; };
 		27A484D01D650E4100B3C705 /* SwipeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484CF1D650E4100B3C705 /* SwipeMeUITests.swift */; };
-		27A484DE1D65103E00B3C705 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */; };
 		27B7BAE71D709AB300ADBBE8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B7BAE61D709AB300ADBBE8 /* Reachability.swift */; };
 		4E4C4DFB1D6B68D400BD0380 /* RequestMakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4C4DFA1D6B68D400BD0380 /* RequestMakerViewController.swift */; };
 		B3B4941355C16F2FDFBAE281 /* Pods_SwipeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */; };
@@ -49,6 +49,7 @@
 /* Begin PBXFileReference section */
 		1C0CBDCF1D6BDCA700169139 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwipeMe-Bridging-Header.h"; sourceTree = "<group>"; };
+		1C2F8E9B1D70DDDF00C64211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		1C431D0D1D66A4E400736F70 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		1C431D0F1D66A50900736F70 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		27A484CB1D650E4100B3C705 /* SwipeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwipeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A484CF1D650E4100B3C705 /* SwipeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMeUITests.swift; sourceTree = "<group>"; };
 		27A484D11D650E4100B3C705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27B7BAE61D709AB300ADBBE8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4C4DFA1D6B68D400BD0380 /* RequestMakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMakerViewController.swift; sourceTree = "<group>"; };
@@ -152,12 +152,12 @@
 		27A484AE1D650E4100B3C705 /* SwipeMe */ = {
 			isa = PBXGroup;
 			children = (
+				1C2F8E9B1D70DDDF00C64211 /* GoogleService-Info.plist */,
 				27A484AF1D650E4100B3C705 /* AppDelegate.swift */,
 				2764FC8D1D68D54000DCEEC9 /* Model */,
 				2764FC8E1D68D55000DCEEC9 /* View */,
 				4E5B159C1D677A48002D021D /* Controllers */,
 				27A484BB1D650E4100B3C705 /* Info.plist */,
-				27A484DD1D65103E00B3C705 /* GoogleService-Info.plist */,
 				1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */,
 			);
 			path = SwipeMe;
@@ -319,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27A484BA1D650E4100B3C705 /* LaunchScreen.storyboard in Resources */,
-				27A484DE1D65103E00B3C705 /* GoogleService-Info.plist in Resources */,
+				1C2F8E9C1D70DDDF00C64211 /* GoogleService-Info.plist in Resources */,
 				27A484B71D650E4100B3C705 /* Assets.xcassets in Resources */,
 				27A484B51D650E4100B3C705 /* Main.storyboard in Resources */,
 			);

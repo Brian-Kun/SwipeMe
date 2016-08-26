@@ -9,8 +9,10 @@
 import UIKit
 import FirebaseAuth
 import JSSAlertView
+import FirebaseInvites
+import GoogleSignIn
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDelegate {
     
     static let userDefaults = NSUserDefaults.standardUserDefaults()
     static var postsArePrivate:Bool { return userDefaults.boolForKey("postsArePrivate") }
@@ -20,6 +22,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var privacySwitch: UISwitch!
     
+    
+    @IBOutlet weak var inviteButton: UIButton!
+    var name = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +49,7 @@ class ProfileViewController: UIViewController {
         if let user = FIRAuth.auth()?.currentUser {
             
             //fetch for user image,name,email, and uid
-            let name = user.displayName
+                name = user.displayName!
             let email = user.email
             let photoUrl = user.photoURL
             
@@ -56,7 +61,24 @@ class ProfileViewController: UIViewController {
 
         
     }
+    
 
+    
+    @IBAction func inviteTapped(sender: UIButton) {
+        
+        if let invite = FIRInvites.inviteDialog() {
+            invite.setInviteDelegate(self)
+            
+            
+            invite.setMessage("Try this out!\n -\(name)")
+                      invite.setTitle("Swpr invite! ")
+            invite.setDeepLink("https://cq83n.app.goo.gl/qbvQ")
+            invite.setCallToActionText("Install!")
+            invite.setCustomImage("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
+                invite.open()
+        }
+        
+    }
     
 
     @IBAction func logOutBtnPressed(sender: UIButton) {
@@ -89,6 +111,13 @@ class ProfileViewController: UIViewController {
             color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
             iconImage: UIImage(named: "noInternet"))
         alertView.setTextTheme(.Light)
+    }
+    func inviteFinishedWithInvitations(invitationIds: [AnyObject], error: NSError?) {
+        if let error = error {
+            print("Failed: " + error.localizedDescription)
+        } else {
+            print("Invitations sent")
+        }
     }
    
 
