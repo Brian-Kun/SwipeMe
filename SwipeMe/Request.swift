@@ -12,7 +12,7 @@ struct Request {
     
     let displayName: String!
     let UID : String!
-    let createdAt : String!
+    let createdAt : NSTimeInterval
     let location :String!
     let userPhotoURL: String!
     let comment: String!

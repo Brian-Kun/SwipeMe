@@ -17,7 +17,7 @@ struct FeedPost {
     let postUserUID:String
     let postUserDisplayName:String!
     let postUserPhotoURL: String!
-    let createdAt:String!
+    let createdAt:NSTimeInterval!
     let postID:String!
     
     

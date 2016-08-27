@@ -38,7 +38,7 @@ class FeedTableViewController: UITableViewController {
         let databaseRef =  FIRDatabase.database().reference()
         databaseRef.child("Feed Posts").queryOrderedByKey().observeEventType(.ChildAdded, withBlock:{
             snapshot in
-            let createdAt = snapshot.value!["createdAt"] as! String
+            let createdAt = snapshot.value!["createdAt"] as! NSTimeInterval
             let postUserDisplayName = snapshot.value!["postUserDisplayName"] as! String
             let postUserUID = snapshot.value!["postUserUID"] as! String
             let postUserPhotoUrl = snapshot.value!["postUserPhotoUrl"] as! String
@@ -135,48 +135,20 @@ class FeedTableViewController: UITableViewController {
         
     }
     
-    func timeSincePostWasMade(requestTime:String) -> Int{
+    func timeSincePostWasMade(postTime:NSTimeInterval) -> Int{
         
-        var date24 = ""
+        let postTime = NSDate(timeIntervalSince1970: postTime)
         
-        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
-            
-            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-            let dateFormatter1 = NSDateFormatter()
-            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-            let date = dateFormatter1.dateFromString(requestTime)
-            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-            date24 = dateFormatter1.stringFromDate(date!)
-            
-        }else{
-            date24 = requestTime
-        }
-        
-        
-        //Create a time object of the current date
-        let today = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yy, HH:mm"
-        let currentFormattedTime = formatter.stringFromDate(today)
-        
-        //Create a time object for the current time
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
-        let dateAsString = date24
-        
-        //Assign both variable with nice names
-        let postTime = dateFormatter.dateFromString(dateAsString)
-        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        let timeNow = NSDate().timeIntervalSince1970
+        let currentTime = NSDate(timeIntervalSince1970: timeNow)
         
         
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
-        return Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
-        
-        
+        return Int((currentTime.timeIntervalSinceDate(postTime)/60))
         
     }
     
-    func feedPostIsOld(requestCreatedAt:String)-> Bool{
+    func feedPostIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
         
         let exceeded = timeSincePostWasMade(requestCreatedAt)
         if  exceeded >= 60{
@@ -185,49 +157,21 @@ class FeedTableViewController: UITableViewController {
         return false
     }
     
-    func calculateTimeSinceMade(requestTime:String) -> String{
+    func calculateTimeSinceMade(requestTime:NSTimeInterval) -> String{
         
-        var date24 = ""
+        let postTime = NSDate(timeIntervalSince1970: requestTime)
         
-        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
-            
-            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-            let dateFormatter1 = NSDateFormatter()
-            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-            let date = dateFormatter1.dateFromString(requestTime)
-            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-            date24 = dateFormatter1.stringFromDate(date!)
-            
-        }else{
-            date24 = requestTime
-        }
-        
-        
-        //Create a time object of the current date
-        let today = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yy, HH:mm"
-        let currentFormattedTime = formatter.stringFromDate(today)
-        
-        //Create a time object for the current time
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
-        let dateAsString = date24
-        
-        //Assign both variable with nice names
-        let postTime = dateFormatter.dateFromString(dateAsString)
-        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
-        
+        let timeNow = NSDate().timeIntervalSince1970
+        let currentTime = NSDate(timeIntervalSince1970: timeNow)
         
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
-        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
+        let timeSincePost = (currentTime.timeIntervalSinceDate(postTime)/60)
         
         if(timeSincePost < 60){
             return ("\(Int(timeSincePost))m")
         }else{
             return ("\(Int(timeSincePost/60))h")
         }
-        
     }
     
     func displayNoInternetAlert(){

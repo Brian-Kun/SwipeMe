@@ -57,7 +57,7 @@ class RequestTableViewController: UITableViewController {
             
             let displayName = snapshot.value!["displayName"] as! String
             let UID = snapshot.value!["UID"] as! String
-            let createdAt = snapshot.value!["createdAt"] as! String
+            let createdAt = snapshot.value!["createdAt"] as! NSTimeInterval
             let location = snapshot.value!["location"] as! String
             let photoURL = snapshot.value!["userPhotoURL"] as! String
             let comment = snapshot.value!["comment"] as! String
@@ -235,7 +235,7 @@ class RequestTableViewController: UITableViewController {
         }
     }
     
-    func getAndDisplayPhoneNumber(userUID: String!, userName:String){
+    func getAndDisplayPhoneNumber(userUID: String!, userName:String, photoURL:String){
         
         let databaseReference =  FIRDatabase.database().reference().child("Phone Numbers").child(userUID)
         // only need to fetch once so use single event
@@ -248,7 +248,7 @@ class RequestTableViewController: UITableViewController {
             }
             
             if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
-                 self.displayrequestSuccessAlert(userName, requestPhoneNumber: phoneNumberValue)
+                 self.displayrequestSuccessAlert(userName, requestPhoneNumber: phoneNumberValue, photoURL: photoURL)
             }
         })
         
@@ -265,9 +265,9 @@ class RequestTableViewController: UITableViewController {
                     let requestUserUID = self.requestArray[indexPath.row].UID
                     let requestID = self.requestArray[indexPath.row].requestID
                     let requestDisplaName = self.requestArray[indexPath.row].displayName
-                    self.getAndDisplayPhoneNumber(requestUserUID, userName: requestDisplaName)
                     let requestLocation = self.requestArray[indexPath.row].location
                     let requestPhoto = self.requestArray[indexPath.row].userPhotoURL
+                    self.getAndDisplayPhoneNumber(requestUserUID, userName: requestDisplaName, photoURL: requestPhoto)
                     
                     self.createFeedPost(requestUserUID, requestUserDisplayName: requestDisplaName, requestLocation: requestLocation, requestUserPhotoUrl: requestPhoto)
                     
@@ -304,40 +304,15 @@ class RequestTableViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func calculateTimeSinceMade(requestTime:String) -> String{
-        var date24 = ""
+    func calculateTimeSinceMade(requestTime:NSTimeInterval) -> String{
         
-        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
-            
-            //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-            let dateFormatter1 = NSDateFormatter()
-            dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-            let date = dateFormatter1.dateFromString(requestTime)
-            dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-            date24 = dateFormatter1.stringFromDate(date!)
-            
-        }else{
-            date24 = requestTime
-        }
+        let postTime = NSDate(timeIntervalSince1970: requestTime)
         
-        //Create a time object of the current date
-        let today = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yy, HH:mm"
-        let currentFormattedTime = formatter.stringFromDate(today)
-        
-        //Create a time object for the current time
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
-        let dateAsString = date24
-        
-        //Assign both variable with nice names
-        let postTime = dateFormatter.dateFromString(dateAsString)
-        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
-        
+        let timeNow = NSDate().timeIntervalSince1970
+        let currentTime = NSDate(timeIntervalSince1970: timeNow)
         
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
-        let timeSincePost = (currentTime!.timeIntervalSinceDate(postTime!)/60)
+        let timeSincePost = (currentTime.timeIntervalSinceDate(postTime)/60)
         
         if(timeSincePost < 60){
             return ("\(Int(timeSincePost))m")
@@ -347,49 +322,22 @@ class RequestTableViewController: UITableViewController {
         
     }
     
-    func calculateTimeSinceRequestWasMadeInMinutes(requestTime:String) -> Int{
+    func calculateTimeSinceRequestWasMadeInMinutes(requestTime:NSTimeInterval) -> Int{
         
-        var date24 = ""
+        let postTime = NSDate(timeIntervalSince1970: requestTime)
         
-        if(requestTime.containsString("AM") || requestTime.containsString("PM")){
-            
-        //Since parse is a little bitch, we need to grab the date from the database and put it in 24hr format
-        let dateFormatter1 = NSDateFormatter()
-        dateFormatter1.dateFormat = "MM/dd/yy, h:mm a"
-        let date = dateFormatter1.dateFromString(requestTime)
-        dateFormatter1.dateFormat = "MM/dd/yy, HH:mm"
-        date24 = dateFormatter1.stringFromDate(date!)
-            
-        }else{
-            date24 = requestTime
-        }
-        
-       
-        
-        //Create a time object of the current date
-        let today = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yy, HH:mm"
-        let currentFormattedTime = formatter.stringFromDate(today)
-        
-        //Create a time object for the current time
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy, HH:mm"
-        let dateAsString = date24
-        
-        //Assign both variable with nice names
-        let postTime = dateFormatter.dateFromString(dateAsString)
-        let currentTime = dateFormatter.dateFromString(currentFormattedTime)
+        let timeNow = NSDate().timeIntervalSince1970
+        let currentTime = NSDate(timeIntervalSince1970: timeNow)
         
         
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
-        return Int((currentTime!.timeIntervalSinceDate(postTime!)/60))
+        return Int((currentTime.timeIntervalSinceDate(postTime)/60))
         
         
         
     }
     
-    func requestIsOld(requestCreatedAt:String)-> Bool{
+    func requestIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
         
         let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
             if  exceeded >= 15{
@@ -409,14 +357,21 @@ class RequestTableViewController: UITableViewController {
         alertView.setTextTheme(.Light)
     }
     
-    func displayrequestSuccessAlert(requestUserName: String, requestPhoneNumber: String){
-        let alertView  = JSSAlertView().show( self,
-        title: "Request Match!",
-        text: "Help \(requestUserName) to get a swipe by texting \(requestPhoneNumber). Head over to your messages, we've started the conversation for you and be polite!",
-        buttonText: "Okay!",
-        color: UIColor(red:0, green: 1.0,blue:0, alpha: 1.0))
-        alertView.setTextTheme(.Light)
+    func displayrequestSuccessAlert(requestUserName: String, requestPhoneNumber: String, photoURL:String){
         
+        let photoUrl = NSURL(string: photoURL)
+        let customIcon = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+        let alertview = JSSAlertView().show(self, title: "\(requestUserName)", text: "Tanks for giving me a swipe!", buttonText: "Contact Me", color: UIColorFromHex(0xE0107A, alpha: 1), iconImage: customIcon)
+        alertview.addAction(closeCallback)
+        alertview.setTitleFont("ClearSans-Bold")
+        alertview.setTextFont("ClearSans")
+        alertview.setButtonFont("ClearSans-Light")
+        alertview.setTextTheme(.Light)
+        
+    }
+    
+    func closeCallback() {
+        print("Close callback called")
     }
     
     
