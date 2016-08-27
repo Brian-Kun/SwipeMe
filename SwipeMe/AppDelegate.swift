@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     //Google sign in setup
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
-        SwiftSpinner.showWithDelay(2.0, title: "Signing In..")
+        SwiftSpinner.show("Signing In..")
             if let error = error {
                  SwiftSpinner.show("Failed to sign in. Try again later.", animated: false)
                 print(error.localizedDescription)
@@ -76,7 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
            
             
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                 SwiftSpinner.hide()
+                let triggerTime1 = (Int64(NSEC_PER_SEC) * 2)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime1), dispatch_get_main_queue(), { () -> Void in
+                    SwiftSpinner.show("Welcome, \(user!.displayName!)", animated: false)
+                })
+                
+                let triggerTime = (Int64(NSEC_PER_SEC) * 4)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                    SwiftSpinner.hide()
+                })
             }
     }
     
