@@ -105,7 +105,7 @@ class PhoneNumberViewController: UIViewController {
             if !snapshot.exists() {
                 let triggerTime2 = (Int64(NSEC_PER_SEC) * 3)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime2), dispatch_get_main_queue(), { () -> Void in
-                    SwiftSpinner.show("User Information Loaded", animated: false)
+                    SwiftSpinner.show("Please Add Phone Number", animated: false)
                 })
                 
                 let triggerTime = (Int64(NSEC_PER_SEC) * 6)
@@ -120,7 +120,6 @@ class PhoneNumberViewController: UIViewController {
                 let triggerTime2 = (Int64(NSEC_PER_SEC) * 3)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime2), dispatch_get_main_queue(), { () -> Void in
                      SwiftSpinner.show("User Information Loaded", animated: false)
-                    self.phoneTextField.text = result
                 })
                 
                
