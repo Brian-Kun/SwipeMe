@@ -208,14 +208,12 @@ class RequestTableViewController: UITableViewController {
     }
     
     
-    func currentDate() -> String{
-        //Calculate current time in format MM/dd/yy, HH:mm for example: 08/24/16, 10:10
-        let today = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yy, HH:mm"
-        return formatter.stringFromDate(today)
-
+    
+    func currentDate() -> NSTimeInterval{
+        return NSDate().timeIntervalSince1970
+        
     }
+
     
     //Created a post in the feed database
     func createFeedPost(requestUserUID:String, requestUserDisplayName:String, requestLocation:String, requestUserPhotoUrl:String){
