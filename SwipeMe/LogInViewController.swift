@@ -51,8 +51,8 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     
     override func viewDidAppear(animated: Bool) {
         if let user = FIRAuth.auth()?.currentUser {
-            print("User \((user.displayName)!) is already signed in! Moving to next screen!")
-            SwiftSpinner.show("Signin In..", animated: true)
+            print("\(user.displayName) has alreafy signed in, moving on...)")
+            GIDSignIn.sharedInstance().signIn()
         }
     }
     

@@ -32,8 +32,6 @@ class FeedTableViewController: UITableViewController {
         view.addSubview(noFeedActivityImageView)
         noFeedActivityImageView.hidden = false
         
-      
-        
         self.title = "Feed"
         let databaseRef =  FIRDatabase.database().reference()
         databaseRef.child("Feed Posts").queryOrderedByKey().observeEventType(.ChildAdded, withBlock:{

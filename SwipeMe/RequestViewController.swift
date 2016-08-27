@@ -11,8 +11,9 @@ import Firebase
 import FirebaseDatabase
 import XLActionController
 import JSSAlertView
+import MessageUI
 
-class RequestTableViewController: UITableViewController {
+class RequestTableViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
     
     var requestArray = [Request]()
     
@@ -359,7 +360,7 @@ class RequestTableViewController: UITableViewController {
         
         let photoUrl = NSURL(string: photoURL)
         let customIcon = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
-        let alertview = JSSAlertView().show(self, title: "\(requestUserName)", text: "Tanks for giving me a swipe!", buttonText: "Contact Me", color: UIColorFromHex(0xE0107A, alpha: 1), iconImage: customIcon)
+        let alertview = JSSAlertView().show(self, title: "\(requestUserName)", text: "Thanks for giving me a swipe! Tap the button below to start chatting with me!", buttonText: "Contact Me", color: UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0), iconImage: customIcon)
         alertview.addAction(closeCallback)
         alertview.setTitleFont("ClearSans-Bold")
         alertview.setTextFont("ClearSans")
@@ -368,12 +369,30 @@ class RequestTableViewController: UITableViewController {
         
     }
     
-    func closeCallback() {
-        print("Close callback called")
+    // A wrapper function to indicate whether or not a text message can be sent from the user's device
+    func canSendText() -> Bool {
+        return MFMessageComposeViewController.canSendText()
     }
     
+    func closeCallback() {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Message Body"
+            controller.recipients = ["9788854294"]
+            controller.messageComposeDelegate = self
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
     
-   
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        //... handle sms screen actions
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     
 }
 

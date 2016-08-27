@@ -294,6 +294,8 @@ public class JSSAlertView: UIViewController {
 		self.iconImage = iconImage
 		if self.iconImage != nil {
 			self.iconImageView = UIImageView(image: self.iconImage)
+            self.iconImageView.layer.cornerRadius = self.iconImageView.bounds.width/2
+            self.iconImageView.layer.masksToBounds = true
 			self.containerView.addSubview(iconImageView)
 		}
 		

@@ -117,18 +117,19 @@ class PhoneNumberViewController: UIViewController {
             
             if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
                 result = phoneNumberValue
-                self.phoneTextField.text = result
                 let triggerTime2 = (Int64(NSEC_PER_SEC) * 3)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime2), dispatch_get_main_queue(), { () -> Void in
                      SwiftSpinner.show("User Information Loaded", animated: false)
+                    self.phoneTextField.text = result
                 })
+                
                
                 let triggerTime = (Int64(NSEC_PER_SEC) * 5)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
                    SwiftSpinner.hide()
                 })
 
-                let triggerTime1 = (Int64(NSEC_PER_SEC) * 5)
+                let triggerTime1 = (Int64(NSEC_PER_SEC) * 4)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime1), dispatch_get_main_queue(), { () -> Void in
                     if(result.characters.count == 10){
                         self.performSegueWithIdentifier("userConfirmedSegue", sender: self)
