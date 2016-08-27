@@ -28,6 +28,9 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
         
         textView.delegate = self
         

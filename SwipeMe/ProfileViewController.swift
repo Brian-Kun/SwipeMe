@@ -14,30 +14,20 @@ import GoogleSignIn
 
 class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDelegate {
     
-    static let userDefaults = NSUserDefaults.standardUserDefaults()
-    static var postsArePrivate:Bool { return userDefaults.boolForKey("postsArePrivate") }
-
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
-    @IBOutlet weak var privacySwitch: UISwitch!
+
     
     
     @IBOutlet weak var inviteButton: UIButton!
-    var name = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let feedPrivacySettings = NSUserDefaults.standardUserDefaults().boolForKey("poststArePrivate")
-        print("Feed privacy is \(feedPrivacySettings)")
-        
-        if(feedPrivacySettings){
-           
-            privacySwitch.setOn(true, animated: false)
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
         }
-        
-        
         
         self.title = "Profile"
         
@@ -49,7 +39,7 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         if let user = FIRAuth.auth()?.currentUser {
             
             //fetch for user image,name,email, and uid
-                name = user.displayName!
+            let name = user.displayName!
             let email = user.email
             let photoUrl = user.photoURL
             
@@ -90,18 +80,6 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         self.presentViewController(viewController, animated: true, completion: nil)
        
     }
-    @IBAction func privacySwitchValueChanged(sender: UISwitch) {
-        if(privacySwitch.on){
-            print("Prvacy is on")
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "postsArePrivate")
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }else{
-            print("Prvacy is off")
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "postsArePrivate")
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
-    
     func displayNoInternetAlert(){
         let alertView = JSSAlertView().show(
             self,

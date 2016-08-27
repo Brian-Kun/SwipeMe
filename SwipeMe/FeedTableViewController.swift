@@ -25,7 +25,7 @@ class FeedTableViewController: UITableViewController {
         tableView.dataSource = self
         
         self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
-
+        
         
         //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
         tableView.backgroundColor = UIColor.lightGrayColor()
@@ -161,7 +161,8 @@ class FeedTableViewController: UITableViewController {
     func feedPostIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
         
         let exceeded = timeSincePostWasMade(requestCreatedAt)
-        if  exceeded >= 60{
+        //Feed posts are old after 24hrs
+        if  exceeded >= 1440{
             return true
         }
         return false

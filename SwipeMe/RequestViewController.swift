@@ -19,10 +19,14 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     
     let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
     
-    
+    var userRequestPhoneNumber = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
         
         tableView.dataSource = self
         
@@ -247,7 +251,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
             }
             
             if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
-                 self.displayrequestSuccessAlert(userName, requestPhoneNumber: phoneNumberValue, photoURL: photoURL)
+                 self.displayContactAlert(userName, requestPhoneNumber: phoneNumberValue, photoURL: photoURL)
             }
         })
         
@@ -356,11 +360,12 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         alertView.setTextTheme(.Light)
     }
     
-    func displayrequestSuccessAlert(requestUserName: String, requestPhoneNumber: String, photoURL:String){
+    func displayContactAlert(requestUserName: String, requestPhoneNumber: String, photoURL:String){
         
         let photoUrl = NSURL(string: photoURL)
         let customIcon = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
         let alertview = JSSAlertView().show(self, title: "\(requestUserName)", text: "Thanks for giving me a swipe! Tap the button below to start chatting with me!", buttonText: "Contact Me", color: UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0), iconImage: customIcon)
+        userRequestPhoneNumber = requestPhoneNumber
         alertview.addAction(closeCallback)
         alertview.setTitleFont("ClearSans-Bold")
         alertview.setTextFont("ClearSans")
@@ -369,29 +374,39 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         
     }
     
+    
+    func closeCallback() {
+        
+        if (canSendText()) {
+            // Obtain a configured MFMessageComposeViewController
+            let messageComposeVC = configuredMessageComposeViewController(userRequestPhoneNumber)
+            
+            // Present the configured MFMessageComposeViewController instance
+            // Note that the dismissal of the VC will be handled by the messageComposer instance,
+            // since it implements the appropriate delegate call-back
+            presentViewController(messageComposeVC, animated: true, completion: nil)
+        }
+    }
+    
     // A wrapper function to indicate whether or not a text message can be sent from the user's device
     func canSendText() -> Bool {
         return MFMessageComposeViewController.canSendText()
     }
     
-    func closeCallback() {
-        if (MFMessageComposeViewController.canSendText()) {
-            let controller = MFMessageComposeViewController()
-            controller.body = "Message Body"
-            controller.recipients = ["9788854294"]
-            controller.messageComposeDelegate = self
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
+    // Configures and returns a MFMessageComposeViewController instance
+    func configuredMessageComposeViewController(phoneNumber:String) -> MFMessageComposeViewController {
+        let messageComposeVC = MFMessageComposeViewController()
+        messageComposeVC.messageComposeDelegate = self  //  Make sure to set this property to self, so that the controller can be dismissed!
+        messageComposeVC.recipients =  [phoneNumber]
+        messageComposeVC.body = "Hey! I found you on Swpr. And I wanna give you a meal swipe!"
+        return messageComposeVC
     }
     
+    // MFMessageComposeViewControllerDelegate callback - dismisses the view controller when the user is finished with it
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        //... handle sms screen actions
-        self.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
-
-    override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-    }
+   
     
     
 }
