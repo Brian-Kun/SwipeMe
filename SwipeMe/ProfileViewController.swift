@@ -70,12 +70,12 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
             invite.setInviteDelegate(self)
             
             
-            invite.setMessage("Try this out!\n -\(name)")
-                      invite.setTitle("Swpr invite! ")
+            invite.setMessage("Check this app out! It's called Swpr")
+            invite.setTitle("Swpr invite! ")
             invite.setDeepLink("https://cq83n.app.goo.gl/qbvQ")
             invite.setCallToActionText("Install!")
             invite.setCustomImage("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
-                invite.open()
+            invite.open()
         }
         
     }

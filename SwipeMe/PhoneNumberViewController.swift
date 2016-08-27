@@ -36,7 +36,12 @@ class PhoneNumberViewController: UIViewController {
         if(Reachability.isConnectedToNetwork()){
             //Check if user is logged in. (Migth remove )
             if let user = FIRAuth.auth()?.currentUser {
-                SwiftSpinner.show("Loading information")
+                
+                let triggerTime = (Int64(NSEC_PER_SEC) * 1)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                    SwiftSpinner.show("Loading information", animated: true)
+                })
+                
                 getPhoneNumber(user.uid)
                 
                 //fetch for user image,name,email, and uid
@@ -98,16 +103,38 @@ class PhoneNumberViewController: UIViewController {
         databaseReference.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             if !snapshot.exists() {
-                print ("Phone Number not found for this user id")
+                let triggerTime2 = (Int64(NSEC_PER_SEC) * 3)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime2), dispatch_get_main_queue(), { () -> Void in
+                    SwiftSpinner.show("User Information Loaded", animated: false)
+                })
+                
+                let triggerTime = (Int64(NSEC_PER_SEC) * 6)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                    SwiftSpinner.hide()
+                })
                 return
             }
             
             if let phoneNumberValue = snapshot.value!["phoneNumber"] as? String {
                 result = phoneNumberValue
                 self.phoneTextField.text = result
-                if(result.characters.count == 10){
-                    self.performSegueWithIdentifier("userConfirmedSegue", sender: self)
-                }
+                let triggerTime2 = (Int64(NSEC_PER_SEC) * 3)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime2), dispatch_get_main_queue(), { () -> Void in
+                     SwiftSpinner.show("User Information Loaded", animated: false)
+                })
+               
+                let triggerTime = (Int64(NSEC_PER_SEC) * 5)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                   SwiftSpinner.hide()
+                })
+
+                let triggerTime1 = (Int64(NSEC_PER_SEC) * 5)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime1), dispatch_get_main_queue(), { () -> Void in
+                    if(result.characters.count == 10){
+                        self.performSegueWithIdentifier("userConfirmedSegue", sender: self)
+                    }
+                })
+                
             }
         })
         SwiftSpinner.hide()

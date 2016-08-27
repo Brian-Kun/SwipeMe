@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogIn" translatesAutoresizingMaskIntoConstraints="NO" id="edG-Ss-E8r">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pv-dG-SFs">
                                 <rect key="frame" x="206" y="277" width="189" height="46"/>
                                 <state key="normal" image="googleSignIn"/>
@@ -24,19 +27,15 @@
                                     <action selector="googleBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O69-o6-QoL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pak-QY-Oay">
-                                <rect key="frame" x="222" y="129" width="156" height="50"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="36"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8pv-dG-SFs" firstAttribute="top" secondItem="Pak-QY-Oay" secondAttribute="bottom" constant="98" id="1mw-i8-gwB"/>
-                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d1n-4S-QVN"/>
-                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ude-ux-oox"/>
-                            <constraint firstItem="Pak-QY-Oay" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ytc-kc-L1O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="edG-Ss-E8r" secondAttribute="trailing" constant="-20" id="Bv3-gr-Hy1"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="edG-Ss-E8r" secondAttribute="bottom" id="SPn-sw-c5W"/>
+                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="edG-Ss-E8r" secondAttribute="centerY" id="T0E-2N-ek0"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="edG-Ss-E8r" secondAttribute="leading" constant="20" id="bg5-B9-bKn"/>
+                            <constraint firstItem="edG-Ss-E8r" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="o1y-er-jBB"/>
+                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerX" secondItem="edG-Ss-E8r" secondAttribute="centerX" id="zNm-Vb-Kcc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -97,7 +96,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="123 456 7890" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5N-Bh-OD2">
                                 <rect key="frame" x="154" y="239" width="426" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.23529411764705882" green="0.72941176470588232" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -257,7 +256,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-fB-UNI" id="xRt-K3-g7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
@@ -345,7 +344,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGc-2T-t9t" id="eHf-4u-zw0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-yD-cdo">
@@ -634,6 +633,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogIn" width="1080" height="1920"/>
         <image name="feed" width="35" height="30"/>
         <image name="googleSignIn" width="189" height="46"/>
         <image name="profile" width="23" height="30"/>

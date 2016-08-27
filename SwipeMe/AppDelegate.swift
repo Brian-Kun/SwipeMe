@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 import SwiftSpinner
+import FirebaseInvites
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
