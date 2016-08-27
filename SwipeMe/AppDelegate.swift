@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+               
         if(Reachability.isConnectedToNetwork()){
             
             //Firebase app configuration
+            
             FIRApp.configure()
         
             //Google Sign in configuration
@@ -34,9 +35,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
         //Make status bar pretty
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+       
+        registerForPushNotifications(application)
         
+        
+
         
         return true
+    }
+  
+
+    
+      func registerForPushNotifications(application: UIApplication) {
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        
+        if notificationSettings.types != .None {
+            application.registerForRemoteNotifications()
+        }
+    }
+   
+    func application(application: UIApplication, didRegisterForPushNotificationsWithDeviceToken deviceToken: NSData) {
+        print("DEVICE TOKEN = \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForPushNotificationsWithError error: NSError) {
+        print(error)
+    }
+    
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        //let aps = userInfo["aps"] as! [String: AnyObject]
+        // If your app was running and in the foreground
+        // Or
+        // If your app was running or suspended in the background and the user brings it to the foreground by tapping the push notification
     }
     
     //Google sign in setup
@@ -47,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
     }
     
+   
     
     func application(application: UIApplication,
                      openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -86,6 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
                     SwiftSpinner.hide()
                 })
             }
+        
+        
+        
     }
     
     //Google sing in setup

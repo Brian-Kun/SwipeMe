@@ -19,6 +19,8 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         if(Reachability.isConnectedToNetwork()){
             print("Internet Connection Found")
             //Firebase Login setup
@@ -48,7 +50,12 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
             print("\(user.displayName!) has alreafy signed in, moving on...)")
             GIDSignIn.sharedInstance().signIn()
         }
+       
+       
+        
     }
+    
+    
     
     
 

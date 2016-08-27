@@ -20,6 +20,8 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       randomNotification()
+        
         tableView.dataSource = self
         
         self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
@@ -52,8 +54,7 @@ class FeedTableViewController: UITableViewController {
             
             
         })
-        
-    }
+           }
     
     func refreshTable(){
         for post in feedPostArray{
@@ -63,6 +64,16 @@ class FeedTableViewController: UITableViewController {
         }
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+    }
+    
+    func  randomNotification() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        localNotification.alertBody = "TEST!!!!"
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,10 +121,11 @@ class FeedTableViewController: UITableViewController {
         
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
-        return cell
+               return cell
         
     }
     
+       
     //method to delete requests based on the request ID
     func deletePostWithID(postId : String!){
         let ref = FIRDatabase.database().reference().child("Feed Posts").queryOrderedByKey().queryEqualToValue(postId)
