@@ -11,13 +11,15 @@ import FirebaseAuth
 import JSSAlertView
 import FirebaseInvites
 import GoogleSignIn
+import MessageUI
 
-class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDelegate {
+class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDelegate,MFMailComposeViewControllerDelegate  {
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
 
+    @IBOutlet weak var feedbackBtn: UIButton!
     
     
     @IBOutlet weak var inviteButton: UIButton!
@@ -80,6 +82,39 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         self.presentViewController(viewController, animated: true, completion: nil)
        
     }
+    //let the mailview controller appear when the send feedback button is pressed
+    @IBAction func feedbackBtnPressed(sender: UIButton) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        
+    }
+    //set mail vie controller attributes
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["info.swipeme@gmail.com"])
+        mailComposerVC.setSubject("Swpr Feedback ")
+        mailComposerVC.setMessageBody("", isHTML: false)
+        
+        return mailComposerVC
+    }
+    //method to notify mail error in device
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    //method to dismiss mailview controller once sent
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
     func displayNoInternetAlert(){
         let alertView = JSSAlertView().show(
             self,

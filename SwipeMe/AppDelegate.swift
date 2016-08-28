@@ -35,54 +35,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
         //Make status bar pretty
         UIApplication.sharedApplication().statusBarStyle = .LightContent
-        
-        let notificationCategory = UIMutableUserNotificationCategory()
-        let categories = Set<UIUserNotificationCategory>(arrayLiteral: notificationCategory)
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-         //UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        //let device register for remote notifications & set the settings for the kind of notifications
+        let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
        
-        //registerForPushNotifications(application)
-        
-        
-
-        
         return true
     }
-  
-
     
-      func registerForPushNotifications(application: UIApplication) {
+        //let device receive and handle notifications 
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+                     fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
-    }
-    
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         
-        if notificationSettings.types != .None {
-            application.registerForRemoteNotifications()
-        }
-    }
-   
-    func application(application: UIApplication, didRegisterForPushNotificationsWithDeviceToken deviceToken: NSData) {
-        print("DEVICE TOKEN = \(deviceToken)")
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForPushNotificationsWithError error: NSError) {
-        print(error)
-    }
-    
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        // Print message ID.
+        print("Message ID: \(userInfo["gcm.message_id"]!)")
         
-        //let aps = userInfo["aps"] as! [String: AnyObject]
-        // If your app was running and in the foreground
-        // Or
-        // If your app was running or suspended in the background and the user brings it to the foreground by tapping the push notification
+        // Print full message.
+        print("%@", userInfo)
     }
     
-    //Google sign in setup
+    
+        //Google sign in setup
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         return GIDSignIn.sharedInstance().handleURL(url,
             sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,

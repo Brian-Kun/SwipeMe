@@ -25,6 +25,10 @@ target 'SwipeMe' do
   
   pod 'Firebase/Invites'
   
+  pod 'Firebase/Core'
+  
+  pod 'Firebase/Messaging'
+  
 
 
 end

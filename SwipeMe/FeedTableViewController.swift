@@ -26,6 +26,8 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
         self.title = "Feed"
         
         if(!Reachability.isConnectedToNetwork()){
