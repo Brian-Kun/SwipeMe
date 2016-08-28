@@ -18,8 +18,6 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
-
-    @IBOutlet weak var feedbackBtn: UIButton!
     
     
     @IBOutlet weak var inviteButton: UIButton!
@@ -92,6 +90,7 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         }
         
     }
+    
     //set mail vie controller attributes
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()

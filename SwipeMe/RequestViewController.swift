@@ -289,6 +289,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
                     ///update answered variable on db to true
                     self.deleteRequestWithRequestID(requestID)
                     self.requestPhotoArray.removeAtIndex(indexPath.row)
+                    self.requestPhotoArray.removeAtIndex(indexPath.row)
                     self.requestArray.removeAtIndex(indexPath.row)
                     
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
