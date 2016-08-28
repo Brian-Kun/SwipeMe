@@ -157,9 +157,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
         cell.userImage.clipsToBounds = true
 
-        let photoUrl = NSURL(string: requestUserPhotoUrl)
-        cell.userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
-            
+        cell.userImage.image = convertUrlToImage(requestUserPhotoUrl)
             
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
@@ -168,6 +166,12 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         
         return cell
     }
+    
+    func convertUrlToImage(Url:String) -> UIImage{
+        let postUserPhotoUrl = NSURL(string: Url)
+        return UIImage(data: ( NSData(contentsOfURL: postUserPhotoUrl!))!)!
+    }
+
     
     //Pop up for users to type their dining commons
     func showPopUpForRequest(){

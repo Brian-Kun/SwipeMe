@@ -14,6 +14,8 @@ import JSSAlertView
 class FeedTableViewController: UITableViewController {
     
     var feedPostArray = [FeedPost]()
+    var postUserPhotoArray = [UIImage]()
+    var requestUserPhotoArray = [UIImage]()
     
     let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
 
@@ -50,11 +52,15 @@ class FeedTableViewController: UITableViewController {
             let requestUserUID = snapshot.value!["requestUserUID"] as! String
             let requestPhotoUrl = snapshot.value!["requestUserPhotoUrl"] as! String
             let postID = snapshot.key
-                       self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
+            
+            
+            self.postUserPhotoArray.insert(self.convertUrlToImage(postUserPhotoUrl), atIndex: 0)
+            self.requestUserPhotoArray.insert(self.convertUrlToImage(requestPhotoUrl), atIndex: 0)
+            
+            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
             self.tableView.reloadData()
             
-            self.randomNotification(postUserDisplayName)
-  
+            
             
         })
            }
@@ -112,12 +118,11 @@ class FeedTableViewController: UITableViewController {
         cell.requestUserImage.layer.cornerRadius = cell.requestUserImage.frame.size.width/2
         cell.requestUserImage.clipsToBounds = true
         
-    
-        let postUserPhotoUrl = NSURL(string: feedPostArray[indexPath.row].postUserPhotoURL)
-        cell.postUserImage.image = UIImage(data: ( NSData(contentsOfURL: postUserPhotoUrl!))! )
+        cell.postUserImage.image = postUserPhotoArray[indexPath.row]
         
-        let requestUserPhotoUrl = NSURL(string : feedPostArray[indexPath.row].requestUserPhotoUrl)
-        cell.requestUserImage.image = UIImage(data : (NSData(contentsOfURL: requestUserPhotoUrl!))!)
+        cell.requestUserImage.image = requestUserPhotoArray[indexPath.row]
+        
+        
         cell.timeLbl.text = calculateTimeSinceMade(feedPostArray[indexPath.row].createdAt)
         
         
@@ -125,6 +130,11 @@ class FeedTableViewController: UITableViewController {
         cell.preservesSuperviewLayoutMargins = false
                return cell
         
+    }
+    
+    func convertUrlToImage(Url:String) -> UIImage{
+        let postUserPhotoUrl = NSURL(string: Url)
+        return UIImage(data: ( NSData(contentsOfURL: postUserPhotoUrl!))!)!
     }
     
        
