@@ -21,18 +21,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pv-dG-SFs">
-                                <rect key="frame" x="206" y="277" width="189" height="46"/>
+                                <rect key="frame" x="206" y="318" width="189" height="46"/>
                                 <state key="normal" image="googleSignIn"/>
                                 <connections>
                                     <action selector="googleBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O69-o6-QoL"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="edG-Ss-E8r" secondAttribute="trailing" constant="-20" id="Bv3-gr-Hy1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="edG-Ss-E8r" secondAttribute="bottom" id="SPn-sw-c5W"/>
-                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="edG-Ss-E8r" secondAttribute="centerY" id="T0E-2N-ek0"/>
+                            <constraint firstItem="8pv-dG-SFs" firstAttribute="centerY" secondItem="edG-Ss-E8r" secondAttribute="centerY" constant="41" id="T0E-2N-ek0"/>
                             <constraint firstAttribute="leadingMargin" secondItem="edG-Ss-E8r" secondAttribute="leading" constant="20" id="bg5-B9-bKn"/>
                             <constraint firstItem="edG-Ss-E8r" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="o1y-er-jBB"/>
                             <constraint firstItem="8pv-dG-SFs" firstAttribute="centerX" secondItem="edG-Ss-E8r" secondAttribute="centerX" id="zNm-Vb-Kcc"/>
@@ -99,7 +99,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="I5N-Bh-OD2" secondAttribute="trailing" id="6Gc-4X-bIJ"/>
                             <constraint firstItem="Rx4-Hi-Inv" firstAttribute="centerY" secondItem="FOp-GG-E4f" secondAttribute="centerY" id="ABE-f6-cUq"/>
@@ -252,7 +252,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-fB-UNI" id="xRt-K3-g7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
@@ -340,7 +340,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGc-2T-t9t" id="eHf-4u-zw0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-yD-cdo">

@@ -152,12 +152,12 @@
 		27A484AE1D650E4100B3C705 /* SwipeMe */ = {
 			isa = PBXGroup;
 			children = (
-				1C2F8E9B1D70DDDF00C64211 /* GoogleService-Info.plist */,
 				27A484AF1D650E4100B3C705 /* AppDelegate.swift */,
 				2764FC8D1D68D54000DCEEC9 /* Model */,
 				2764FC8E1D68D55000DCEEC9 /* View */,
 				4E5B159C1D677A48002D021D /* Controllers */,
 				27A484BB1D650E4100B3C705 /* Info.plist */,
+				1C2F8E9B1D70DDDF00C64211 /* GoogleService-Info.plist */,
 				1C2BB9ED1D65179500EAFB34 /* SwipeMe-Bridging-Header.h */,
 			);
 			path = SwipeMe;

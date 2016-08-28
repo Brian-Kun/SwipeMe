@@ -88,7 +88,7 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
         } else {
-            self.showSendMailErrorAlert()
+            displayAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
         }
         
     }
@@ -103,13 +103,20 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
         
         return mailComposerVC
     }
-    //method to notify mail error in device
-    func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-        sendMailErrorAlert.show()
+        
+    //Displays UI arelt with title, message and "Okay" button
+    func displayAlert(title:String, message: String){
+        let alertView = JSSAlertView().show(
+            self,
+            title: title,
+            text: message,
+            buttonText: "Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "idea"))
+        alertView.setTextTheme(.Light)
     }
     //method to dismiss mailview controller once sent
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
