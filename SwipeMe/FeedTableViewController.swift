@@ -20,7 +20,10 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       randomNotification()
+        if(!Reachability.isConnectedToNetwork()){
+            displayNoInternetAlert()
+        }
+       
         
         tableView.dataSource = self
         
@@ -47,11 +50,11 @@ class FeedTableViewController: UITableViewController {
             let requestUserUID = snapshot.value!["requestUserUID"] as! String
             let requestPhotoUrl = snapshot.value!["requestUserPhotoUrl"] as! String
             let postID = snapshot.key
-            
-            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
+                       self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
             self.tableView.reloadData()
             
-            
+            self.randomNotification(postUserDisplayName)
+  
             
         })
            }
@@ -66,11 +69,10 @@ class FeedTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
     
-    func  randomNotification() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+    func  randomNotification(postUserDisplayName : String!) {
         let localNotification = UILocalNotification()
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
-        localNotification.alertBody = "TEST!!!!"
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 4)
+        localNotification.alertBody = "Your request has been answered by \(postUserDisplayName)"
         localNotification.timeZone = NSTimeZone.defaultTimeZone()
         localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)

@@ -60,6 +60,8 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         databaseRef.child("Requests").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
+           
+            
             let displayName = snapshot.value!["displayName"] as! String
             let UID = snapshot.value!["UID"] as! String
             let createdAt = snapshot.value!["createdAt"] as! NSTimeInterval
@@ -80,7 +82,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         //Constantly refresh tableView when requests are deleted
         databaseRef.child("Requests").queryOrderedByKey().observeEventType(.ChildRemoved, withBlock: {
             snapshot in
-            
+           
             let childAutoID = snapshot.key
             
             if(self.requestArray.count != 0){
@@ -107,6 +109,8 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
+    
+   
     
     
     //The number of rows in the section is the number of elements in the array
@@ -222,10 +226,10 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     
     //Created a post in the feed database
     func createFeedPost(requestUserUID:String, requestUserDisplayName:String, requestLocation:String, requestUserPhotoUrl:String){
-        
+       
         //Check if user is logged in. (Migth remove )
         if let user = FIRAuth.auth()?.currentUser {
-            let feedPost : [String : AnyObject] = ["requestUserUID":requestUserUID,
+                      let feedPost : [String : AnyObject] = ["requestUserUID":requestUserUID,
                                                    "requestUserDisplayName":requestUserDisplayName,
                                                    "requestLocation":requestLocation,
                                                    "requestUserPhotoUrl" : requestUserPhotoUrl,
@@ -235,6 +239,8 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
                                                    "postUserPhotoUrl":String(user.photoURL!)]
             let databaseRef = FIRDatabase.database().reference()
             databaseRef.child("Feed Posts").childByAutoId().setValue(feedPost)
+          
+           
         }
     }
     

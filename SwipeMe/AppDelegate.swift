@@ -35,9 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
         //Make status bar pretty
         UIApplication.sharedApplication().statusBarStyle = .LightContent
-         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        
+        let notificationCategory = UIMutableUserNotificationCategory()
+        let categories = Set<UIUserNotificationCategory>(arrayLiteral: notificationCategory)
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+         //UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
        
-        registerForPushNotifications(application)
+        //registerForPushNotifications(application)
         
         
 
@@ -113,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
                 accessToken: authentication.accessToken)
            
-            
+           //TODO:CATCH ERRORS HERE
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 let triggerTime1 = (Int64(NSEC_PER_SEC) * 2)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime1), dispatch_get_main_queue(), { () -> Void in
