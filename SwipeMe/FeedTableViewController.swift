@@ -80,7 +80,7 @@ class FeedTableViewController: UITableViewController {
         localNotification.fireDate = NSDate(timeIntervalSinceNow: 4)
         localNotification.alertBody = "Your request has been answered by \(postUserDisplayName)"
         localNotification.timeZone = NSTimeZone.defaultTimeZone()
-        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        localNotification.applicationIconBadgeNumber = 0
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
@@ -107,7 +107,11 @@ class FeedTableViewController: UITableViewController {
         let postUser = feedPostArray[indexPath.row].postUserDisplayName
         let requestUser = feedPostArray[indexPath.row].requestUserDisplayName
         let requestLocation = feedPostArray[indexPath.row].requestLocation
-        requestCellLabel.text = "\(postUser) swiped \(requestUser) at \(requestLocation)"
+        
+        let formattedString = NSMutableAttributedString()
+        formattedString.bold("\(postUser)").normal(" swiped ").bold("\(requestUser) ").normal("at \(requestLocation)")
+        requestCellLabel.attributedText = formattedString
+        
         
         cell.postUserImage.layer.cornerRadius = cell.postUserImage.frame.size.width/2
         cell.postUserImage.clipsToBounds = true
@@ -209,6 +213,4 @@ class FeedTableViewController: UITableViewController {
     }
     
     
-
-
 }

@@ -17,6 +17,8 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     
     var requestArray = [Request]()
     
+    var requestPhotoArray = [UIImage]()
+    
     let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
     
     var userRequestPhoneNumber = ""
@@ -73,6 +75,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
             if self.requestIsOld(createdAt) {
                 self.deleteRequestWithRequestID(childAutoID)
             } else{
+            self.requestPhotoArray.insert(self.convertUrlToImage(photoURL), atIndex: 0)
             self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, comment: comment,requestID: childAutoID), atIndex: 0)
             }
            
@@ -138,7 +141,6 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         
         let requestUser = requestArray[indexPath.row].displayName
         let requestLocation = requestArray[indexPath.row].location
-        let requestUserPhotoUrl = requestArray[indexPath.row].userPhotoURL
         let requestUserComment = requestArray[indexPath.row].comment
         
         let fullNameArr = requestUser.characters.split{$0 == " "}.map(String.init)
@@ -157,7 +159,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
         cell.userImage.clipsToBounds = true
 
-        cell.userImage.image = convertUrlToImage(requestUserPhotoUrl)
+        cell.userImage.image = requestPhotoArray[indexPath.row]
             
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
@@ -286,10 +288,12 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
                     
                     ///update answered variable on db to true
                     self.deleteRequestWithRequestID(requestID)
+                    self.requestPhotoArray.removeAtIndex(indexPath.row)
                     self.requestArray.removeAtIndex(indexPath.row)
+                    
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }else{
-                    self.displayAlert("Hey there...", message: "You can't answer your own requests.... That's not how it works.")
+                    self.displayAlert("Hey there...", message: "You can't answer your own requests... That's not how it works.")
                 }
             }
         }
@@ -310,11 +314,14 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     
     //Displays UI arelt with title, message and "Okay" button
     func displayAlert(title:String, message: String){
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let alertView = JSSAlertView().show(
+            self,
+            title: title,
+            text: message,
+            buttonText: "Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "idea"))
+        alertView.setTextTheme(.Light)
     }
     
     func calculateTimeSinceMade(requestTime:NSTimeInterval) -> String{
