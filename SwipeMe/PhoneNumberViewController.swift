@@ -20,6 +20,7 @@ class PhoneNumberViewController: UIViewController {
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var phoneTextField: UITextField!
     
+    //Get firebase user object
     let user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad() {
@@ -29,19 +30,22 @@ class PhoneNumberViewController: UIViewController {
         self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
         self.userImage.clipsToBounds = true
         
+        //Add gesture recognizer to dismiss keyboard when you tap anywhere on the screen
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PhoneNumberViewController.dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
         
+        //Check internet connection
         if(Reachability.isConnectedToNetwork()){
-            //Check if user is logged in. (Migth remove )
+            
             if let user = FIRAuth.auth()?.currentUser {
                 
+                //Display loading spinner
                 let triggerTime = (Int64(NSEC_PER_SEC) * 1)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
                     SwiftSpinner.show("Loading information", animated: true)
                 })
                 
+                //Get user phone number from db
                 getPhoneNumber(user.uid)
                 
                 //fetch for user image,name,email, and uid
@@ -56,6 +60,7 @@ class PhoneNumberViewController: UIViewController {
             }
             
         }else{
+            //Is there is no internet, display that
             displayNoInternetAlert()
         }
         
@@ -66,9 +71,9 @@ class PhoneNumberViewController: UIViewController {
     
     @IBAction func continueBtnPressed(sender: UIButton) {
         
-        
         getPhoneNumber(user?.uid)
         
+        //Check for correct phone number
         if(phoneTextField.text?.characters.count == 0){
             displayAlert("Quick Thing...", message: "You forgot to input your phone number. We need your phone number to help you contact those that want a meal swipe.")
         }
@@ -82,7 +87,7 @@ class PhoneNumberViewController: UIViewController {
             }
             performSegueWithIdentifier("userConfirmedSegue", sender: self)
         }
-    }
+    }//end of btnPressesd()
     
     func uploadPhoneNumber(phonenumber : String!){
         

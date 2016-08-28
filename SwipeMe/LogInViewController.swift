@@ -19,10 +19,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
+        //Check fot internet before doing anything
         if(Reachability.isConnectedToNetwork()){
-            print("Internet Connection Found")
+            
             //Firebase Login setup
             GIDSignIn.sharedInstance().uiDelegate = self
             
@@ -37,31 +36,22 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
                     })
                 }
             }
-        }else{
-            print("Internet Connection NOT Found")
         }
-            
-       
-        
     }//End of viewDidLoad()
     
     override func viewDidAppear(animated: Bool) {
+        //If this is not the first time a user logs in, we automatically log them in.
         if let user = FIRAuth.auth()?.currentUser {
             print("\(user.displayName!) has alreafy signed in, moving on...)")
             GIDSignIn.sharedInstance().signIn()
         }
        
-       
-        
-    }
-    
-    
-    
+    }//end of viewDidAppear()
     
 
     @IBAction func googleBtnPressed(sender: UIButton) {
+        //When log in button is taopped, log users in, if no internet is found, a Spinner will display it.
         if(Reachability.isConnectedToNetwork()){
-            
             GIDSignIn.sharedInstance().uiDelegate = self
             GIDSignIn.sharedInstance().signIn();
         }else{

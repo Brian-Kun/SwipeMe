@@ -13,22 +13,28 @@ import JSSAlertView
 
 class FeedTableViewController: UITableViewController {
     
+    //Arrays of posts
     var feedPostArray = [FeedPost]()
+    
+    //Arrays of images that are given a value when the data is pulled, this reduces lag when scrolling
     var postUserPhotoArray = [UIImage]()
     var requestUserPhotoArray = [UIImage]()
     
+    //Declare image that is shown when there 
     let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Feed"
+        
         if(!Reachability.isConnectedToNetwork()){
             displayNoInternetAlert()
         }
        
-        
         tableView.dataSource = self
         
+        //Add refresh control traget, so when we pull down, refreshTable() will be called
         self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         
         
@@ -39,7 +45,7 @@ class FeedTableViewController: UITableViewController {
         view.addSubview(noFeedActivityImageView)
         noFeedActivityImageView.hidden = false
         
-        self.title = "Feed"
+        //Db listener for new objects created
         let databaseRef =  FIRDatabase.database().reference()
         databaseRef.child("Feed Posts").queryOrderedByKey().observeEventType(.ChildAdded, withBlock:{
             snapshot in
@@ -62,9 +68,10 @@ class FeedTableViewController: UITableViewController {
             
             
             
-        })
-           }
+            })
+        }
     
+    //Loop through feed posts and delete old ones
     func refreshTable(){
         for post in feedPostArray{
             if(feedPostIsOld(post.createdAt)){
@@ -75,14 +82,6 @@ class FeedTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
     
-    func  randomNotification(postUserDisplayName : String!) {
-        let localNotification = UILocalNotification()
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 4)
-        localNotification.alertBody = "Your request has been answered by \(postUserDisplayName)"
-        localNotification.timeZone = NSTimeZone.defaultTimeZone()
-        localNotification.applicationIconBadgeNumber = 0
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-    }
     
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //Check if there are any requests, if there are, display the tableView and hide the noRequestImageView
@@ -112,27 +111,28 @@ class FeedTableViewController: UITableViewController {
         formattedString.bold("\(postUser)").normal(" swiped ").bold("\(requestUser) ").normal("at \(requestLocation)")
         requestCellLabel.attributedText = formattedString
         
-        
+        //Add border to rounded user image
         cell.postUserImage.layer.cornerRadius = cell.postUserImage.frame.size.width/2
         cell.postUserImage.clipsToBounds = true
         cell.postUserImage.layer.borderWidth = 2
         cell.postUserImage.layer.borderColor = UIColor.whiteColor().CGColor
         
-        
+        //Add border to rounded rquest user image
         cell.requestUserImage.layer.cornerRadius = cell.requestUserImage.frame.size.width/2
         cell.requestUserImage.clipsToBounds = true
         
+        //Assign values to imageViews from arrays, THIS MAKES THE TABLEVIEW NOT LAG WHEN SCROLLING
         cell.postUserImage.image = postUserPhotoArray[indexPath.row]
-        
         cell.requestUserImage.image = requestUserPhotoArray[indexPath.row]
         
-        
+        //Display time since post was made
         cell.timeLbl.text = calculateTimeSinceMade(feedPostArray[indexPath.row].createdAt)
         
-        
+        //Create nice tableView separators
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
-               return cell
+        
+        return cell
         
     }
     
@@ -174,26 +174,29 @@ class FeedTableViewController: UITableViewController {
         
     }
     
+    //Return true if posts are older than 24 hrs
     func feedPostIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
-        
         let exceeded = timeSincePostWasMade(requestCreatedAt)
-        //Feed posts are old after 24hrs
-        if  exceeded >= 1440{
+        if  (exceeded/60) >=  24{
             return true
         }
         return false
     }
     
+    //Return a string with  the time since made EX:  "6h" or "25m"
     func calculateTimeSinceMade(requestTime:NSTimeInterval) -> String{
         
+        //Create NSDate from UNIX timestamp
         let postTime = NSDate(timeIntervalSince1970: requestTime)
         
+        //Ccreate NSDAT from current time in the same format as UNIX Timestamp
         let timeNow = NSDate().timeIntervalSince1970
         let currentTime = NSDate(timeIntervalSince1970: timeNow)
         
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
         let timeSincePost = (currentTime.timeIntervalSinceDate(postTime)/60)
         
+        //return formatted stings
         if(timeSincePost < 60){
             return ("\(Int(timeSincePost))m")
         }else{
