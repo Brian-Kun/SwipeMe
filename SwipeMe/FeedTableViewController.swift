@@ -156,8 +156,8 @@ class FeedTableViewController: UITableViewController {
         
     }
     
+    //Returns in minutes
     func timeSincePostWasMade(postTime:NSTimeInterval) -> Int{
-        
         let postTime = NSDate(timeIntervalSince1970: postTime)
         
         let timeNow = NSDate().timeIntervalSince1970

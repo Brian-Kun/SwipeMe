@@ -14,9 +14,9 @@ import JSSAlertView
 import MessageUI
 
 class RequestTableViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
-    
     var requestArray = [Request]()
     
+    //Image view that gets displayed when there are no requests
     let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
     
     var userRequestPhoneNumber = ""
@@ -24,13 +24,14 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set up pull to refresh
+        tableView.dataSource = self
+        self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
+        
+        //Check for interent connection
         if(!Reachability.isConnectedToNetwork()){
             displayNoInternetAlert()
         }
-        
-        tableView.dataSource = self
-        
-        self.refreshControl?.addTarget(self, action: #selector(refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         
         //Hide the tableview and display the noRequestImageView. We don't wanna show an empty tableview...
         tableView.backgroundColor = UIColor.lightGrayColor()
@@ -53,14 +54,12 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         navigationItem.rightBarButtonItem?.setTitleTextAttributes(attributes, forState: .Normal)
       
 
-        //Pulls data from database and updates it by adding it to the requestArray
+        //All this code pulls data from database and updates it by adding it to the requestArray
         let databaseRef = FIRDatabase.database().reference()
         
         //Constantly refresh tableView when new requests are added
         databaseRef.child("Requests").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
-            
-           
             
             let displayName = snapshot.value!["displayName"] as! String
             let UID = snapshot.value!["UID"] as! String
@@ -70,6 +69,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
             let comment = snapshot.value!["comment"] as! String
             let childAutoID = snapshot.key
             
+            //When we pull, we check if the requests are old and then we
             if self.requestIsOld(createdAt) {
                 self.deleteRequestWithRequestID(childAutoID)
             } else{
@@ -100,6 +100,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
       
     }//end of viewDidLoad()
     
+    
     func refreshTable(){
         for request in requestArray{
             if(requestIsOld(request.createdAt)){
@@ -109,9 +110,6 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
-    
-   
-    
     
     //The number of rows in the section is the number of elements in the array
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -255,7 +253,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         databaseReference.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             if !snapshot.exists() {
-                print ("Phone Number not found for this user id")
+                self.displayAlert("Hey there...", message: "Looks like we don't have a phone number for your account. Go to the settings and add one.")
                 return
             }
             
@@ -353,6 +351,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         
     }
     
+    //requests older than 15minutes get deleted
     func requestIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
         
         let exceeded = calculateTimeSinceRequestWasMadeInMinutes(requestCreatedAt)
@@ -373,13 +372,12 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         alertView.setTextTheme(.Light)
     }
     
+    //Displays contact info after share requet button is tapped
     func displayContactAlert(requestUserName: String, requestPhoneNumber: String, photoURL:String){
-        
-        let photoUrl = NSURL(string: photoURL)
-        let customIcon = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+        let customIcon = convertUrlToImage(photoURL)
         let alertview = JSSAlertView().show(self, title: "\(requestUserName)", text: "Thanks for giving me a swipe! Tap the button below to start chatting with me!", buttonText: "Contact Me", color: UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0), iconImage: customIcon)
         userRequestPhoneNumber = requestPhoneNumber
-        alertview.addAction(closeCallback)
+        alertview.addAction(sendMessage)
         alertview.setTitleFont("ClearSans-Bold")
         alertview.setTextFont("ClearSans")
         alertview.setButtonFont("ClearSans-Light")
@@ -387,9 +385,8 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         
     }
     
-    
-    func closeCallback() {
-        
+    //Presents the messsage viewController
+    func sendMessage() {
         if (canSendText()) {
             // Obtain a configured MFMessageComposeViewController
             let messageComposeVC = configuredMessageComposeViewController(userRequestPhoneNumber)

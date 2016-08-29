@@ -78,7 +78,7 @@ class PhoneNumberViewController: UIViewController {
             displayAlert("Quick Thing...", message: "You forgot to input your phone number. We need your phone number to help you contact those that want a meal swipe.")
         }
         else if(phoneTextField.text?.characters.count != 10){
-            displayAlert("😅😅😅", message: "Hey! It looks like that phone number is not valid. Remember just input the phone number without spaces dashes, or country code.")
+            displayAlert("😅😅😅", message: "Hey! It looks like that phone number is not valid. Remember just input the phone number without spaces dashes, or country code. If your number is (978)-885-5214, input it like this 9788855214")
 
         }
         else{
