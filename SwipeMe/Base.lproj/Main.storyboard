@@ -199,6 +199,9 @@
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TPw-Xp-rCS">
                                 <rect key="frame" x="526" y="404" width="51" height="31"/>
+                                <connections>
+                                    <action selector="notificationSwitchChanged:" destination="pbo-P3-gPV" eventType="valueChanged" id="Ag0-He-Qhy"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,6 +234,7 @@
                         <outlet property="emailLbl" destination="EJw-ym-vfs" id="lah-LJ-6CT"/>
                         <outlet property="inviteButton" destination="6qb-el-lfb" id="MpE-MV-YbQ"/>
                         <outlet property="nameLbl" destination="NFU-tg-Q4K" id="p3H-cl-vlR"/>
+                        <outlet property="notifSwitch" destination="TPw-Xp-rCS" id="Y4M-eg-VR6"/>
                         <outlet property="userImage" destination="mm3-4A-wD5" id="cMq-lF-J2X"/>
                     </connections>
                 </viewController>
@@ -252,7 +256,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-fB-UNI" id="xRt-K3-g7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ej-b0-xDU">
@@ -340,7 +344,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGc-2T-t9t" id="eHf-4u-zw0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-yD-cdo">

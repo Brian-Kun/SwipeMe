@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
     @IBOutlet weak var emailLbl: UILabel!
     
     
+    @IBOutlet weak var notifSwitch: UISwitch!
     @IBOutlet weak var inviteButton: UIButton!
     
     override func viewDidLoad() {
@@ -121,6 +122,15 @@ class ProfileViewController: UIViewController,FIRInviteDelegate,GIDSignInUIDeleg
     }
     
     
+    @IBAction func notificationSwitchChanged(sender: UISwitch) {
+        
+            notifSwitch.enabled = false
+            UIApplication.sharedApplication().unregisterForRemoteNotifications()
+       
+            
+        
+    }
+
     func displayNoInternetAlert(){
         let alertView = JSSAlertView().show(
             self,
