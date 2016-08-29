@@ -17,8 +17,6 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
     
     var requestArray = [Request]()
     
-    var requestPhotoArray = [UIImage]()
-    
     let noReuqestImageView = UIImageView(image: UIImage(named: "noRequests")!)
     
     var userRequestPhoneNumber = ""
@@ -75,8 +73,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
             if self.requestIsOld(createdAt) {
                 self.deleteRequestWithRequestID(childAutoID)
             } else{
-            self.requestPhotoArray.insert(self.convertUrlToImage(photoURL), atIndex: 0)
-            self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, comment: comment,requestID: childAutoID), atIndex: 0)
+            self.requestArray.insert(Request(displayName: displayName, UID: UID, createdAt: createdAt, location: location, userPhotoURL: photoURL, comment: comment,requestID: childAutoID,userPhoto: self.convertUrlToImage(photoURL)), atIndex: 0)
             }
            
             self.tableView.reloadData()
@@ -159,7 +156,7 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
         cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
         cell.userImage.clipsToBounds = true
 
-        cell.userImage.image = requestPhotoArray[indexPath.row]
+        cell.userImage.image = requestArray[indexPath.row].userPhoto
             
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.preservesSuperviewLayoutMargins = false
@@ -288,8 +285,6 @@ class RequestTableViewController: UITableViewController, MFMessageComposeViewCon
                     
                     ///update answered variable on db to true
                     self.deleteRequestWithRequestID(requestID)
-                    self.requestPhotoArray.removeAtIndex(indexPath.row)
-                    self.requestPhotoArray.removeAtIndex(indexPath.row)
                     self.requestArray.removeAtIndex(indexPath.row)
                     
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

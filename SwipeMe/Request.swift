@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Request {
     
@@ -17,5 +18,6 @@ struct Request {
     let userPhotoURL: String!
     let comment: String!
     let requestID: String!//Made by firebase
+    let userPhoto : UIImage!//Does not get uploaded to the db
 }
 

@@ -16,10 +16,6 @@ class FeedTableViewController: UITableViewController {
     //Arrays of posts
     var feedPostArray = [FeedPost]()
     
-    //Arrays of images that are given a value when the data is pulled, this reduces lag when scrolling
-    var postUserPhotoArray = [UIImage]()
-    var requestUserPhotoArray = [UIImage]()
-    
     //Declare image that is shown when there 
     let noFeedActivityImageView = UIImageView(image: UIImage(named: "noFeedActivity")!)
 
@@ -62,10 +58,7 @@ class FeedTableViewController: UITableViewController {
             let postID = snapshot.key
             
             
-            self.postUserPhotoArray.insert(self.convertUrlToImage(postUserPhotoUrl), atIndex: 0)
-            self.requestUserPhotoArray.insert(self.convertUrlToImage(requestPhotoUrl), atIndex: 0)
-            
-            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl, createdAt: createdAt, postID: postID), atIndex: 0)
+            self.feedPostArray.insert(FeedPost(requestUserUID: requestUserUID, requestUserDisplayName: requestUserDisplayName,requestLocation: requestLocation,requestUserPhotoUrl: requestPhotoUrl,requestUserPhoto: self.convertUrlToImage(requestPhotoUrl) ,postUserUID: postUserUID , postUserDisplayName: postUserDisplayName,postUserPhotoURL: postUserPhotoUrl,postUserPhoto: self.convertUrlToImage(postUserPhotoUrl) ,createdAt: createdAt, postID: postID), atIndex: 0)
             self.tableView.reloadData()
             
             
@@ -124,8 +117,8 @@ class FeedTableViewController: UITableViewController {
         cell.requestUserImage.clipsToBounds = true
         
         //Assign values to imageViews from arrays, THIS MAKES THE TABLEVIEW NOT LAG WHEN SCROLLING
-        cell.postUserImage.image = postUserPhotoArray[indexPath.row]
-        cell.requestUserImage.image = requestUserPhotoArray[indexPath.row]
+        cell.postUserImage.image = feedPostArray[indexPath.row].postUserPhoto
+        cell.requestUserImage.image = feedPostArray[indexPath.row].requestUserPhoto
         
         //Display time since post was made
         cell.timeLbl.text = calculateTimeSinceMade(feedPostArray[indexPath.row].createdAt)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct FeedPost {
     
@@ -14,9 +15,11 @@ struct FeedPost {
     let requestUserDisplayName:String!
     let requestLocation:String!
     let requestUserPhotoUrl : String!
+    let requestUserPhoto:UIImage! //Does not get uploaded to db
     let postUserUID:String
     let postUserDisplayName:String!
     let postUserPhotoURL: String!
+    let postUserPhoto:UIImage! //Does not get uploaded to db
     let createdAt:NSTimeInterval!
     let postID:String!
     
