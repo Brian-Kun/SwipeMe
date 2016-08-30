@@ -9,6 +9,8 @@
 import UIKit
 
 class ProfileTableViewController: UITableViewController {
+    
+    var sectionsArray = [3,4,1,1]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +31,12 @@ class ProfileTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sectionsArray.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return sectionsArray[section]
     }
 
     /*
