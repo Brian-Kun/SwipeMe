@@ -19,16 +19,31 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
     var sectionsArray = [3,4,1,1]
 
     @IBOutlet weak var notificationSwitch: UISwitch!
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Profile"
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        //Make user image
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.width/2
+        self.userImage.clipsToBounds = true
+        
+        //Check if user is logged in. (Migth remove )
+        if let user = FIRAuth.auth()?.currentUser {
+            
+            //fetch for user image,name,email, and uid
+            let name = user.displayName!
+            let photoUrl = user.photoURL
+            
+            //Display User info
+            nameLbl.text = name
+            userImage.image = UIImage(data: ( NSData(contentsOfURL: photoUrl!))! )
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     @IBAction func switchPressed(sender: AnyObject) {
