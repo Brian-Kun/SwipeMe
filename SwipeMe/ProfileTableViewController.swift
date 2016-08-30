@@ -148,6 +148,7 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
     func displayNoInternetAlert(){
         let alertView = JSSAlertView().show(
             self,
