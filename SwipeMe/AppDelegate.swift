@@ -41,6 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
+        //Set-up for intoView
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor(red:0.20, green:0.29, blue:0.37, alpha:1.0)
        
         return true
     }

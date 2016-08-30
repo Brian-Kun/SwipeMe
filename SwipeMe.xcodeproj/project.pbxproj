@@ -26,6 +26,7 @@
 		27A484D01D650E4100B3C705 /* SwipeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A484CF1D650E4100B3C705 /* SwipeMeUITests.swift */; };
 		27B7BAE71D709AB300ADBBE8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B7BAE61D709AB300ADBBE8 /* Reachability.swift */; };
 		27C51EB11D75190600981D9D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C51EB01D75190600981D9D /* ProfileTableViewController.swift */; };
+		4E46A2D41D76028600CDD596 /* ContentHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E46A2D31D76028600CDD596 /* ContentHolderViewController.swift */; };
 		4E4C4DFB1D6B68D400BD0380 /* RequestMakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4C4DFA1D6B68D400BD0380 /* RequestMakerViewController.swift */; };
 		B3B4941355C16F2FDFBAE281 /* Pods_SwipeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		27B7BAE61D709AB300ADBBE8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		27C51EB01D75190600981D9D /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		33997D2F3DC6857D522BB637 /* Pods_SwipeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E46A2D31D76028600CDD596 /* ContentHolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentHolderViewController.swift; sourceTree = "<group>"; };
 		4E4C4DFA1D6B68D400BD0380 /* RequestMakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMakerViewController.swift; sourceTree = "<group>"; };
 		628D83B79A30F5CD45158FCA /* Pods-SwipeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		782FA490898E8BE1B1EC39D4 /* Pods-SwipeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeMe/Pods-SwipeMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				4E4C4DFA1D6B68D400BD0380 /* RequestMakerViewController.swift */,
 				1C431D0F1D66A50900736F70 /* ProfileViewController.swift */,
 				27C51EB01D75190600981D9D /* ProfileTableViewController.swift */,
+				4E46A2D31D76028600CDD596 /* ContentHolderViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				2764FC8C1D68D53000DCEEC9 /* Request.swift in Sources */,
 				1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */,
 				1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */,
+				4E46A2D41D76028600CDD596 /* ContentHolderViewController.swift in Sources */,
 				1C0CBDD01D6BDCA700169139 /* FeedCell.swift in Sources */,
 				1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */,
 				1C431D0E1D66A4E400736F70 /* RequestTableViewController.swift in Sources */,
