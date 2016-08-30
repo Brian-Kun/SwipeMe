@@ -12,6 +12,8 @@ class ProfileTableViewController: UITableViewController {
     
     var sectionsArray = [3,4,1,1]
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,50 @@ class ProfileTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("Section : \(indexPath.section)")
+        print("Index \(indexPath.row)")
+        
+        if(indexPath.section == 0){
+            
+            if(indexPath.row == 1){
+                print("Invite Friend tapped")
+            }
+        }
+        
+        if(indexPath.section == 1){
+            
+            if(indexPath.row == 0){
+                print("Privacy Policy Tapped")
+            }
+            
+            if(indexPath.row == 1){
+                print("Terms of service Tapped")
+            }
+            
+            if(indexPath.row == 2){
+                print("Open Source Library")
+            }
+            
+            if(indexPath.row == 3){
+                print("About Us Tapped")
+            }
+        }
+        
+        if(indexPath.section == 2){
+            
+            if(indexPath.row == 0){
+                print("Report a Bug Tapped")
+            }
+        }
+        
+        if(indexPath.section == 3){
+            if(indexPath.row == 0){
+                print("Log Out Tapped")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
