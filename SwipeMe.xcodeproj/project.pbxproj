@@ -12,6 +12,8 @@
 		1C431D0C1D66A4BD00736F70 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */; };
 		1C431D0E1D66A4E400736F70 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0D1D66A4E400736F70 /* RequestTableViewController.swift */; };
 		1C431D101D66A50900736F70 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C431D0F1D66A50900736F70 /* ProfileViewController.swift */; };
+		1C68A21E1D764F2900D43982 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68A21D1D764F2900D43982 /* PrivacyPolicyViewController.swift */; };
+		1C68A2201D764F4800D43982 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68A21F1D764F4800D43982 /* TermsOfServiceViewController.swift */; };
 		1CA873391D68DE7F003DD609 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */; };
 		1CA8733B1D68DF44003DD609 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8733A1D68DF44003DD609 /* PhoneNumber.swift */; };
 		272524F31D69F3F600D0F808 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272524F21D69F3F600D0F808 /* FeedPost.swift */; };
@@ -55,6 +57,8 @@
 		1C431D0B1D66A4BD00736F70 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		1C431D0D1D66A4E400736F70 /* RequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
 		1C431D0F1D66A50900736F70 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1C68A21D1D764F2900D43982 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		1C68A21F1D764F4800D43982 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		1CA873381D68DE7F003DD609 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		1CA8733A1D68DF44003DD609 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
 		272524F21D69F3F600D0F808 /* FeedPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				1C431D0F1D66A50900736F70 /* ProfileViewController.swift */,
 				27C51EB01D75190600981D9D /* ProfileTableViewController.swift */,
 				4E46A2D31D76028600CDD596 /* ContentHolderViewController.swift */,
+				1C68A21D1D764F2900D43982 /* PrivacyPolicyViewController.swift */,
+				1C68A21F1D764F4800D43982 /* TermsOfServiceViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -411,6 +417,8 @@
 				1C431D0E1D66A4E400736F70 /* RequestTableViewController.swift in Sources */,
 				272524F31D69F3F600D0F808 /* FeedPost.swift in Sources */,
 				272525181D6A607D00D0F808 /* RequestCell.swift in Sources */,
+				1C68A2201D764F4800D43982 /* TermsOfServiceViewController.swift in Sources */,
+				1C68A21E1D764F2900D43982 /* PrivacyPolicyViewController.swift in Sources */,
 				27A484B01D650E4100B3C705 /* AppDelegate.swift in Sources */,
 				1CA8733B1D68DF44003DD609 /* PhoneNumber.swift in Sources */,
 				27B7BAE71D709AB300ADBBE8 /* Reachability.swift in Sources */,

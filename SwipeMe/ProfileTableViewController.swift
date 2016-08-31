@@ -80,10 +80,12 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
             
             if(indexPath.row == 0){
                 print("Privacy Policy Tapped")
+                 self.performSegueWithIdentifier("privacyPolicySegue", sender: indexPath);
             }
             
             if(indexPath.row == 1){
                 print("Terms of service Tapped")
+                 self.performSegueWithIdentifier("termsOfServiceSegue", sender: indexPath);
             }
             
             if(indexPath.row == 2){
@@ -121,6 +123,14 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if (segue.identifier == "privacyPolicySegue") {
+           
+        }
+        if(segue.identifier == "termsOfServiceSegue"){
+            
+        }
+    }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
