@@ -19,6 +19,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let displayedIntro = userDefaults.boolForKey("displayedIntro")
+        
         //Check fot internet before doing anything
         if(Reachability.isConnectedToNetwork()){
             
@@ -30,9 +33,12 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate{
                 if let user = user {
                     let triggerTime1 = (Int64(NSEC_PER_SEC) * 4)
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime1), dispatch_get_main_queue(), { () -> Void in
-                        print("\(user.displayName) is all good. moving to next screen")
-                        self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
-
+                        print("\(user.displayName!) is all good. moving to next screen")
+                        if(displayedIntro){
+                            self.performSegueWithIdentifier("userLoggedInNormalSegue", sender: self)
+                        }else{
+                            self.performSegueWithIdentifier("userLoggedInSegue", sender: self)
+                        }
                     })
                 }
             }
