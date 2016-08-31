@@ -83,7 +83,7 @@ class PhoneNumberViewController: UIViewController, UIPageViewControllerDataSourc
         
         //Check for correct phone number
         if(phoneTextField.text?.characters.count == 0){
-            displayAlert("Quick Thing...", message: "You forgot to input your phone number. We need your phone number to help you contact those that want a meal swipe.")
+            displayAlert("Quick Thing...", message: "You forgot to input your phone number. We need your phone number to help you contact those that want a meal swipe. We DO NOT share your phone number with any third party company or anything like that.")
         }
         else if(phoneTextField.text?.characters.count != 10){
             displayAlert("😅😅😅", message: "Hey! It looks like that phone number is not valid. Remember just input the phone number without spaces dashes, or country code. If your number is (978)-885-5214, input it like this 9788855214")

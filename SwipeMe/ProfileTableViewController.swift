@@ -67,9 +67,8 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
                     
                     invite.setMessage("Check this app out! It's called Swpr")
                     invite.setTitle("Swpr invite! ")
-                    invite.setDeepLink("https://cq83n.app.goo.gl/qbvQ")
+                    invite.setDeepLink("http://goo.gl/W9vwaT")
                     invite.setCallToActionText("Install!")
-                    invite.setCustomImage("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
                     invite.open()
                 }
                 
@@ -80,20 +79,22 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
             
             if(indexPath.row == 0){
                 print("Privacy Policy Tapped")
-                 self.performSegueWithIdentifier("privacyPolicySegue", sender: indexPath);
+                 self.performSegueWithIdentifier("privacyPolicySegue", sender: self);
             }
             
             if(indexPath.row == 1){
                 print("Terms of service Tapped")
-                 self.performSegueWithIdentifier("termsOfServiceSegue", sender: indexPath);
+                 self.performSegueWithIdentifier("termsOfServiceSegue", sender: self);
             }
             
             if(indexPath.row == 2){
                 print("Open Source Library")
+                self.performSegueWithIdentifier("showOpenSourceSegue", sender: self)
             }
             
             if(indexPath.row == 3){
                 print("About Us Tapped")
+                self.performSegueWithIdentifier("showAboutUsSegue", sender: self)
             }
         }
         
@@ -123,14 +124,7 @@ class ProfileTableViewController: UITableViewController,FIRInviteDelegate,GIDSig
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        if (segue.identifier == "privacyPolicySegue") {
-           
-        }
-        if(segue.identifier == "termsOfServiceSegue"){
-            
-        }
-    }
+    
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()

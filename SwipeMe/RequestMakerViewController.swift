@@ -105,6 +105,8 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
             createRequest(requestLocation, comment: textView.text!)
             UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
             self.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            self.displayAlert("Hey there...", message: "Make sure you write a comment and choose where you want a meal swipe.")
         }
     }
     
@@ -152,6 +154,19 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
             buttonText: "FML😫 Okay",
             color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
             iconImage: UIImage(named: "noInternet"))
+        alertView.setTextTheme(.Light)
+    }
+    
+    
+    //Displays UI arelt with title, message and "Okay" button
+    func displayAlert(title:String, message: String){
+        let alertView = JSSAlertView().show(
+            self,
+            title: title,
+            text: message,
+            buttonText: "Okay",
+            color: UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0),
+            iconImage: UIImage(named: "idea"))
         alertView.setTextTheme(.Light)
     }
 
