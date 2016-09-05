@@ -121,7 +121,7 @@ class RequestMakerViewController: UIViewController,UITextViewDelegate {
                 actionController.addSection(PeriscopeSection())
         
                 actionController.addAction(Action("Worcester Commons", style: .Cancel, handler: { action in
-                    self.chooseDcBtn.setTitle("Worceser Commons", forState: UIControlState.Normal)
+                    self.chooseDcBtn.setTitle("Worcester Commons", forState: UIControlState.Normal)
                     self.requestLocation = "Worcester"
                 }))
         

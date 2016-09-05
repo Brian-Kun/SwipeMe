@@ -76,6 +76,8 @@ class PhoneNumberViewController: UIViewController, UIPageViewControllerDataSourc
     
     @IBAction func continueBtnPressed(sender: UIButton) {
         
+        dismissKeyboard()
+        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let displayedIntro = userDefaults.boolForKey("displayedIntro")
 
