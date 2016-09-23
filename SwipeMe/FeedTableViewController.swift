@@ -169,16 +169,16 @@ class FeedTableViewController: UITableViewController {
         
     }
     
-    //Return true if posts are older than 24 hrs
+    //Return true if posts are older than 30 days
     func feedPostIsOld(requestCreatedAt:NSTimeInterval)-> Bool{
         let exceeded = timeSincePostWasMade(requestCreatedAt)
-        if  (exceeded/60) >=  24{
+        if  (exceeded/60) >=  (24 * 30){
             return true
         }
         return false
     }
     
-    //Return a string with  the time since made EX:  "6h" or "25m"
+    //Return a string with  the time since made EX:  "6h" or "25m" or "4d"
     func calculateTimeSinceMade(requestTime:NSTimeInterval) -> String{
         
         //Create NSDate from UNIX timestamp
@@ -191,11 +191,13 @@ class FeedTableViewController: UITableViewController {
         //Compare the time of both posts and the results is divided by 60, so the result is in minutes
         let timeSincePost = (currentTime.timeIntervalSinceDate(postTime)/60)
         
-        //return formatted stings
+        //return formatted strings
         if(timeSincePost < 60){
             return ("\(Int(timeSincePost))m")
-        }else{
+        }else if(timeSincePost >= 60 && timeSincePost < (60 * 24)){
             return ("\(Int(timeSincePost/60))h")
+        }else{
+            return ("\(Int(timeSincePost/1440))d")
         }
     }
     
